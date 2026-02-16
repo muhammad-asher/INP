@@ -1,0 +1,87 @@
+Essential Java Revision Topics
+==============================
+
+1. Core Java Fundamentals
+   - Object-Oriented Programming (OOP) Principles: 
+     - Encapsulation, Inheritance, Polymorphism, Abstraction
+   - Classes, Objects, Constructors (Default, Parameterized, Copy)
+   - Interface vs Abstract Class (Default & Static methods in Interfaces)
+   - access modifiers (public, private, protected, default)
+   - final, static, this, super keywords
+   - Object class methods (equals, hashCode, toString, clone, finalize)
+   - String Handling (String, StringBuilder, StringBuffer, String Permutations/Immutability)
+   - Exception Handling:
+     - Checked vs Unchecked Exceptions
+     - try-catch-finally, try-with-resources
+     - throw vs throws
+     - Custom Exceptions
+
+2. Collections Framework & Generics
+   - List (ArrayList, LinkedList, Vector) - internal working & time complexity
+   - Set (HashSet, LinkedHashSet, TreeSet) - hashing mechanism
+   - Map (HashMap, LinkedHashMap, TreeMap, ConcurrentHashMap) - internal implementation of HashMap
+   - Queue & Deque (PriorityQueue, ArrayDeque)
+   - Iterators (Iterator, ListIterator, Spliterator)
+   - Comparable vs Comparator
+   - Generics (Wildcards, Bounded Types, Type Erasure)
+
+3. Java 8+ Features (Functional Programming)
+   - Lambda Expressions
+   - Functional Interfaces (Predicate, Function, Consumer, Supplier, BiFunction, etc.)
+   - Stream API (Intermediate vs Terminal operations, map, filter, reduce, collect, flatMap)
+   - Optional Class (avoiding NullPointerException)
+   - Method References (:: operator)
+   - Default & Static Methods in Interfaces
+   - Date & Time API (LocalDate, LocalTime, LocalDateTime, ZonedDateTime, Period, Duration)
+
+4. Multithreading & Concurrency
+   - Thread Lifecycle & States
+   - Creating Threads (Thread class vs Runnable interface vs Callable)
+   - Thread Synchronization (synchronized block/method, intrinsic locks)
+   - Volatile keyword & Atomic Classes (AtomicInteger, etc.)
+   - Thread Communication (wait, notify, notifyAll)
+   - Executor Framework (ThreadPools: Fixed, Cached, Scheduled, Single)
+   - CompletableFuture & Future
+   - Java Memory Model (JMM) & Happens-Before relationship
+   - Locks (ReentrantLock, ReadWriteLock) & Conditions
+   - Concurrent Collections (ConcurrentHashMap, CopyOnWriteArrayList, BlockingQueue)
+
+5. Memory Management & JVM Internals
+   - JVM Architecture (Classloader, Runtime Data Areas, Execution Engine)
+   - Heap vs Stack Memory
+   - Garbage Collection (GC Roots, Generations: Eden, Survivor, Tenured)
+   - GC Algorithms (Serial, Parallel, CMS, G1, ZGC)
+   - Reference Types (Strong, Weak, Soft, Phantom)
+   - Memory Leaks & Troubleshooting (OutOfMemoryError, StackOverflowError)
+
+6. Input/Output (I/O) & Networking
+   - File I/O (FileReader, BufferedReader, FileInputStream)
+   - Serialization & Deserialization (serialVersionUID, transient keyword)
+   - NIO (New I/O) - Channels, Buffers, Selectors
+   - Files Class (Path, Paths)
+
+7. Design Patterns (Commonly Asked)
+   - Creational: Singleton (Double-checked locking), Factory, Builder, Prototype
+   - Structural: Adapter, Decorator, Facade, Proxy
+   - Behavioral: Observer, Strategy, Template Method, Chain of Responsibility
+
+8. Modern Java Features (Java 9 - 21)
+   - Java 9: Modules (JPMS)
+   - Java 10: Local Variable Type Inference (var)
+   - Java 14: Switch Expressions, Records (Preview)
+   - Java 15: Text Blocks
+   - Java 16: Records (Standard), Pattern Matching for instanceof
+   - Java 17: Sealed Classes
+   - Java 21: Virtual Threads (Project Loom), Sequenced Collections
+
+9. Testing & Quality
+   - JUnit 5 Basics (Annotations: @Test, @BeforeEach, @AfterEach, etc.)
+   - Mocking (Mockito: @Mock, @InjectMocks, verify, when-then)
+   - Unit Testing vs Integration Testing
+
+10. Database Connectivity (JDBC & ORM Concepts)
+    - JDBC Driver Types & Steps
+    - Statement vs PreparedStatement vs CallableStatement
+    - Transactions (ACID Properties)
+    - Connection Pooling (HikariCP basics)
+    - Basics of JPA/Hibernate (Entity Lifecycle, Fetch Types: Lazy vs Eager)
