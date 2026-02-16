@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Core Java Fundamentals Explained</title>
+    <!-- Google Fonts for modern typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6366f1; /* Indigo-500 */
+            --secondary-color: #ec4899; /* Pink-500 */
+            --bg-dark: #0f172a; /* Slate-900 */
+            --bg-card: #1e293b; /* Slate-800 */
+            --text-main: #f8fafc; /* Slate-50 */
+            --text-secondary: #94a3b8; /* Slate-400 */
+            --accent-green: #10b981; /* Emerald-500 */
+            --code-bg: #0f172a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 4rem;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+
+        .topic-section {
+            background-color: var(--bg-card);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .topic-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .topic-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 1rem;
+        }
+
+        .topic-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-right: 1rem;
+        }
+
+        .badge {
+            background: rgba(99, 102, 241, 0.2);
+            color: var(--primary-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .explanation {
+            color: var(--text-secondary);
+        }
+
+        .definition {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        .real-world-card {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid var(--accent-green);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            position: relative;
+        }
+
+        .real-world-title {
+            color: var(--accent-green);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+        }
+
+        .analogy {
+            font-style: italic;
+            color: #d1d5db; /* Slate-300 */
+        }
+
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            background: rgba(0,0,0,0.3);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            color: #fbbf24; /* Amber-400 */
+        }
+
+        /* Micro-animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .glass-orb {
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(99,102,241,0.15) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Core Java Fundamentals</h1>
+            <p class="subtitle">Explained simply with real-world analogies.</p>
+        </header>
+
+        <!-- Topic 1: OOP Principles -->
+        <section class="topic-section">
+            <div class="glass-orb"></div>
+            <div class="topic-header">
+                <h2 class="topic-title">OOP Principles</h2>
+                <span class="badge">The Foundation</span>
+            </div>
+            <div class="content-grid">
+                <div class="explanation">
+                    <p class="definition"><strong>Encapsulation:</strong> Binding data and methods together and hiding the internal details (using private fields and public getters/setters).</p>
+                    <p class="definition"><strong>Inheritance:</strong> One class acquiring the properties and behaviors of another class to promote code reuse.</p>
+                    <p class="definition"><strong>Polymorphism:</strong> The ability of an object to take on many forms. Same method name, different behavior.</p>
+                    <p class="definition"><strong>Abstraction:</strong> Hiding implementation details and showing only functionality to the user.</p>
+                </div>
+                <div class="examples">
+                    <div class="real-world-card" style="margin-bottom: 1rem;">
+                        <div class="real-world-title">Real World Analogy: Encapsulation</div>
+                        <p class="analogy">Think of a <strong>Medical Capsule</strong>. The medicine (data) is enclosed inside the capsule shell (class) to protect it from outside contamination. You utilize it, but don't touch the chemicals directly.</p>
+                    </div>
+                    <div class="real-world-card">
+                        <div class="real-world-title">Real World Analogy: Polymorphism</div>
+                        <p class="analogy">Think of a "Sound" button. If you press it for a <strong>Dog</strong> object, it "Barks". If you press it for a <strong>Cat</strong> object, it "Meows". The action (press button) is the same, but the result depends on the object type.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Topic 2: Classes & Objects -->
+        <section class="topic-section">
+            <div class="glass-orb" style="background: radial-gradient(circle, rgba(236, 72, 153, 0.15) 0%, rgba(0,0,0,0) 70%);"></div>
+            <div class="topic-header">
+                <h2 class="topic-title">Class vs Object</h2>
+                <span class="badge">Building Blocks</span>
+            </div>
+            <div class="content-grid">
+                <div class="explanation">
+                    <p class="definition"><strong>Class:</strong> A blueprint or template from which objects are created. It defines properties and behaviors but consumes no memory until instantiated.</p>
+                    <p class="definition"><strong>Object:</strong> A real-world entity created from the class blueprint. It has state (variables) and behavior (methods).</p>
+                </div>
+                <div class="examples">
+                    <div class="real-world-card">
+                        <div class="real-world-title">Real World Analogy</div>
+                        <p class="analogy"><strong>Class:</strong> An Architect's Blueprint for a house. You can't live in the blueprint.</p>
+                        <p class="analogy" style="margin-top: 10px;"><strong>Object:</strong> The actual House built from that blueprint. You can live in it, open doors, etc. You can build 50 houses (objects) from one blueprint (class).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Topic 3: Interface vs Abstract Class -->
+        <section class="topic-section">
+            <div class="topic-header">
+                <h2 class="topic-title">Interface vs Abstract Class</h2>
+                <span class="badge">Structure</span>
+            </div>
+            <div class="content-grid">
+                <div class="explanation">
+                    <p class="definition"><strong>Interface:</strong> A strict contract. It defines <em>what</em> needs to be done, but not <em>how</em>. A class can implement multiple interfaces.</p>
+                    <p class="definition"><strong>Abstract Class:</strong> A partial implementation. It can provide some common functionality while leaving other parts for subclasses to define.</p>
+                </div>
+                <div class="examples">
+                    <div class="real-world-card" style="margin-bottom: 1rem;">
+                        <div class="real-world-title">Real World Analogy: Interface</div>
+                        <p class="analogy">A <strong>Power Socket</strong>. The wall socket (Interface) defines the shape (contract). A TV, Laptop, or Lamp (Implementing Classes) must fit that shape to work, but they all do different things internally.</p>
+                    </div>
+                    <div class="real-world-card">
+                        <div class="real-world-title">Real World Analogy: Abstract Class</div>
+                        <p class="analogy">A <strong>generic "Bird"</strong>. We know all birds have beaks and lay eggs (concrete methods in Abstract Class). But how they "move" differs (Penguin swims, Eagle flies). The Abstract Class defines common traits but leaves "movement" abstract.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Topic 4: Access Modifiers -->
+        <section class="topic-section">
+            <div class="glass-orb"></div>
+            <div class="topic-header">
+                <h2 class="topic-title">Access Modifiers</h2>
+                <span class="badge">Security</span>
+            </div>
+            <div class="content-grid">
+                <div class="explanation">
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 10px;"><code>private</code>: Visible only within the same class.</li>
+                        <li style="margin-bottom: 10px;"><code>default</code> (no keyword): Visible within the same package.</li>
+                        <li style="margin-bottom: 10px;"><code>protected</code>: Visible within package and subclasses (even outside package).</li>
+                        <li><code>public</code>: Visible everywhere.</li>
+                    </ul>
+                </div>
+                <div class="examples">
+                    <div class="real-world-card">
+                        <div class="real-world-title">Real World Analogy</div>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="margin-bottom: 8px;"><strong>Private:</strong> Your personal diary. Only you can read it.</li>
+                            <li style="margin-bottom: 8px;"><strong>Default:</strong> Office rumors. Known only to people in the same department (package).</li>
+                            <li style="margin-bottom: 8px;"><strong>Protected:</strong> Family wealth. Accessible to family members (subclasses) even if they live elsewhere.</li>
+                            <li><strong>Public:</strong> A Billboard on the highway. Anyone can see it.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Topic 5: Exception Handling -->
+        <section class="topic-section">
+            <div class="glass-orb" style="background: radial-gradient(circle, rgba(236, 72, 153, 0.15) 0%, rgba(0,0,0,0) 70%);"></div>
+            <div class="topic-header">
+                <h2 class="topic-title">Exception Handling</h2>
+                <span class="badge">Safety</span>
+            </div>
+            <div class="content-grid">
+                <div class="explanation">
+                    <p class="definition"><strong>Try-Catch:</strong> Attempt a risky operation (try), and if it fails, handle the problem gracefully (catch) instead of crashing.</p>
+                    <p class="definition"><strong>Checked vs Unchecked:</strong> Checked are verified at compile-time (Java forces you to handle them). Unchecked happen at runtime (logic errors).</p>
+                </div>
+                <div class="examples">
+                    <div class="real-world-card">
+                        <div class="real-world-title">Real World Analogy</div>
+                        <p class="analogy"><strong>Try-Catch:</strong> Imagine a trapezist (acrobat). The acrobat performing is the <code>try</code> block. The safety net below is the <code>catch</code> block. If they fall (exception), the net catches them so they don't die (crash). The show can continue.</p>
+                        <p class="analogy" style="margin-top: 10px;"><strong>Checked Exception:</strong> Airport Security. They check your bag <em>before</em> you fly (compile time). You MUST deal with the water bottle before proceeding.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Topic 6: String Immutability -->
+        <section class="topic-section">
+            <div class="topic-header">
+                <h2 class="topic-title">String Immutability</h2>
+                <span class="badge">Data Integrity</span>
+            </div>
+            <div class="content-grid">
+                <div class="explanation">
+                    <p class="definition">In Java, once a <code>String</code> object is created, its value cannot be changed. If you modify it, a <strong>new</strong> object is created.</p>
+                </div>
+                <div class="examples">
+                    <div class="real-world-card">
+                        <div class="real-world-title">Real World Analogy</div>
+                        <p class="analogy">Think of a <strong>Stone Carving</strong>. If you carve "Hello" into a stone, you can't change it to "Help" by rubbing it out. You must take a fresh stone and carve the new word. The original stone remains "Hello" forever.</p>
+                        <p class="analogy" style="margin-top:10px;">(In contrast, <code>StringBuilder</code> is like a Whiteboard where you can erase and rewrite).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>

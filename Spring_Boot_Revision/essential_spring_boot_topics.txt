@@ -1,0 +1,67 @@
+Essential Spring Boot Revision Topics
+=====================================
+
+1. Core Spring Boot Fundamentals
+   - **Auto-Configuration**: How does `@EnableAutoConfiguration` work? (classpath scanning, `spring.factories` / `org.springframework.boot.autoconfigure.AutoConfiguration.imports`)
+   - **Starters**: Understanding `spring-boot-starter-web`, `spring-boot-starter-data-jpa`, etc.
+   - **Dependency Injection (DI) & IoC Container**:
+     - Constructor Injection vs Setter Injection vs Field Injection (Why Constructor is best practice).
+     - Bean Scopes (Singleton, Prototype, Request, Session).
+     - Bean Lifecycle (@PostConstruct, @PreDestroy).
+
+2. Essential Annotations (The "Must-Knows")
+   - **Stereotypes**: `@Component`, `@Service`, `@Repository`, `@Controller`, `@RestController`.
+   - **Configuration**: `@Configuration`, `@Bean`, `@Import`.
+   - **Injection**: `@Autowired`, `@Qualifier`, `@Primary`.
+   - **Properties**: `@Value`, `@ConfigurationProperties` (validation using `spring-boot-starter-validation`).
+   - **Boot Specific**: `@SpringBootApplication` (Combines @Configuration, @EnableAutoConfiguration, @ComponentScan).
+
+3. Building RESTful APIs
+   - **Mapping**: `@GetMapping`, `@PostMapping`, `@PutMapping`, `@DeleteMapping`, `@PatchMapping`.
+   - **Inputs**: `@PathVariable`, `@RequestParam`, `@RequestBody`, `@RequestHeader`.
+   - **Response**: `ResponseEntity<?>`, HTTP Status Codes.
+   - **Exception Handling**: Global handling using `@ControllerAdvice` / `@RestControllerAdvice` and `@ExceptionHandler`.
+   - **Validation**: `@Valid`, `@NotNull`, `@Size`, `@Email` (Jakarta Validation).
+
+4. Spring Data JPA & Database Access
+   - **Repositories**: `JpaRepository` vs `CrudRepository` vs `PagingAndSortingRepository`.
+   - **Query Methods**: Derived queries (e.g., `findByEmail`), `@Query` (JPQL & Native SQL).
+   - **Entities**: `@Entity`, `@Table`, `@Id`, `@GeneratedValue`, `@Column`, `@Transient`.
+   - **Relationships**: `@OneToMany`, `@ManyToOne`, `@OneToOne`, `@ManyToMany` (Lazy vs Eager fetching - Critical!).
+   - **Transactions**: `@Transactional` (Propagation levels: REQUIRED, REQUIRES_NEW, etc., Isolation levels).
+
+5. Spring Security (Authentication & Authorization)
+   - **Filter Chain**: How `SecurityFilterChain` works.
+   - **Authentication**: `AuthenticationManager`, `UserDetailsService`, `UsernamePasswordAuthenticationToken`.
+   - **Authorization**: Role-based access control (`@PreAuthorize`, `requestMatchers`).
+   - **Modern Standards**: Implementing JWT (JSON Web Tokens) or OAuth2 basics.
+   - **CORS**: Configuring Cross-Origin Resource Sharing.
+
+6. Testing
+   - **Unit vs Integration**: When to use which.
+   - **Annotations**:
+     - `@SpringBootTest` (Loads full context - slow).
+     - `@WebMvcTest` (Slices context - for Controllers only).
+     - `@DataJpaTest` (Slices context - for Repositories).
+     - `@MockBean` vs `@Mock` (Mockito).
+
+7. Microservices & Cloud Patterns (If applicable)
+   - **Service Discovery**: Eureka / Consul.
+   - **API Gateway**: Spring Cloud Gateway.
+   - **Resilience**: Circuit Breaker pattern (Resilience4j).
+   - **Config**: Externalized configuration (Spring Cloud Config).
+   - **Communication**: `RestTemplate` (Deprecated) vs `WebClient` vs `FeignClient`.
+
+8. Observability & Monitoring
+   - **Actuator**: Exposing endpoints (/health, /info, /metrics).
+   - **Micrometer**: Metrics collection basics.
+   - **Logging**: SLF4J & Logback configuration (MDC for tracing).
+
+9. Scheduling & Async
+   - `@EnableScheduling` & `@Scheduled` (cron jobs).
+   - `@EnableAsync` & `@Async` (running methods in a separate thread).
+
+10. Profiles & Deployment
+    - **Profiles**: `spring.profiles.active` (dev, test, prod properties).
+    - **Packaging**: Jar vs War.
+    - **Docker**: Containerizing a Spring Boot application (`Dockerfile` basics).

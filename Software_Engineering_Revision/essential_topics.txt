@@ -1,0 +1,66 @@
+Essential Topics for Software Engineers (3-4 Years Experience)
+
+1. System Design (HLD & LLD)
+   - Scalability Principles: Horizontal vs Vertical Scaling
+   - Load Balancing: Algorithms (Round Robin, Least Connection), L4 vs L7
+   - Caching Strategies: Write-Through, Write-Back, Cache-ASide (Redis/Memcached)
+   - Database Sharding & Partitioning
+   - CAP Theorem & Consistency Models (Strong vs Eventual Consistency)
+   - Microservices Architecture vs Monolithic
+   - Communication: REST, gRPC, GraphQL, WebSockets
+   - Message Queues: Kafka, RabbitMQ (Choosing the right one)
+   - Rate Limiting & Throttling
+   - Distributed ID Generation (Snowflake, UUID)
+
+2. Clean Code, Architecture & Design Patterns
+   - SOLID Principles (Must know thoroughly)
+   - GoF Design Patterns: Singleton, Factory, Strategy, Observer, Decorator, Adapter, Builder
+   - Domain-Driven Design (DDD) Basics: Entities, Value Objects, Aggregates, Repositories
+   - Hexagonal Architecture / Clean Architecture
+   - Dependency Injection & Inversion of Control
+   - TDD (Test Driven Development) & BDD
+
+3. Databases
+   - ACID Properties & Isolation Levels (Read Committed, Serializable, etc.)
+   - Indexing: B-Trees, B+ Trees, Hash Indexes, Composite Indexes
+   - SQL vs NoSQL: When to choose what (PostgreSQL vs MongoDB/Cassandra)
+   - Database Normalization (1NF, 2NF, 3NF) vs Denormalization
+   - Replication Strategies (Master-Slave, Multi-Master)
+   - Concurrency Control (Pessimistic vs Optimistic Locking)
+
+4. Data Structures & Algorithms (Refresher)
+   - Arrays, Linked Lists, Stacks, Queues
+   - Hash Tables & Hashing Collisions
+   - Trees (BST, AVL, Red-Black Trees, Tries) & Graphs (BFS, DFS)
+   - Sorting (Merge/Quick/Heap) & Searching (Binary Search)
+   - Basic Dynamic Programming & Greedy Algorithms
+   - Big O Notation (Time & Space Complexity Analysis)
+
+5. Distributed Systems Concepts
+   - Consensus Algorithms (Paxos, Raft - High-level understanding)
+   - Leader Election
+   - Clock Synchronization (NTP, Vector Clocks)
+   - Failure Modes & Circuit Breaker Pattern (Resilience)
+   - Idempotency in API design
+
+6. Networking & Security
+   - HTTP/1.1 vs HTTP/2 vs HTTP/3
+   - TCP/IP Handshake & Slow Start
+   - DNS Resolution Process
+   - Authentication & Authorization: OAuth 2.0, OIDC, JWT, SAML
+   - HTTPS/TLS/SSL Handshake
+   - OWASP Top 10 Security Vulnerabilities (SQL Injection, XSS, CSRF)
+
+7. DevOps & Cloud Awareness
+   - CI/CD Pipelines (Jenkins, GitHub Actions, GitLab CI)
+   - Containerization: Docker (Images, Containers, Dockerfile optimization)
+   - Orchestration: Kubernetes Basics (Pods, Services, Deployments)
+   - Cloud Fundamentals (AWS/Azure/GCP): Compute (EC2), Storage (S3), Networking (VPC), Serverless (Lambda)
+   - Infrastructure as Code (Terraform basics)
+   - Observability: Logging (ELK/Splunk), Metrics (Prometheus/Grafana), Tracing (Jaeger/Zipkin)
+
+8. Soft Skills & Behavioral
+   - System Design Interview Approach
+   - Mentorship & Code Reviews (How to give/receive feedback)
+   - Agile Methodologies (Scrum, Kanban)
+   - Stakeholder Communication & Requirement Gathering

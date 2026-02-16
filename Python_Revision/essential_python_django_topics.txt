@@ -1,0 +1,73 @@
+Essential Python & Django Revision Topics
+=========================================
+
+1. Core Python Fundamentals
+   - Data Structures (List, Dictionary, Tuple, Set)
+     - List Comprehensions & Dict Comprehensions
+     - Dictionary manipulations (.get(), .items(), .keys(), .values())
+     - Mutability vs Immutability (Why keys in dict must be immutable)
+   - Functions
+     - *args and **kwargs (Variable arguments)
+     - Lambda Functions (Anonymous functions)
+     - Scope (LEGB Rule: Local, Enclosing, Global, Built-in)
+     - Decorators (@staticmethod, @classmethod, Custom decorators)
+   - Iterators & Generators
+     - 'yield' keyword
+     - Generator expressions
+     - itertools module usage
+   - File Handling & Context Managers
+     - 'with' statement (Context Management Protocol __enter__, __exit__)
+   - Exception Handling (try, except, else, finally)
+
+2. Object-Oriented Programming (OOP) in Python
+   - Classes & Objects (self keyword)
+   - Inheritance (Method Resolution Order - MRO)
+   - Polymorphism & Duck Typing (If it walks like a duck...)
+   - Encapsulation (Private variables with _, __ name mangling)
+   - Dunder (Magic) Methods (__init__, __str__, __repr__, __call__, __eq__)
+   - Abstract Base Classes (abc module)
+
+3. Advanced Python Concepts
+   - Memory Management (Reference Counting, Garbage Collection)
+   - Global Interpreter Lock (GIL) - What it is and why it exists
+   - Multithreading vs Multiprocessing (When to use which)
+   - Asynchronous I/O (async/await, asyncio basics)
+   - Type Hinting (typing module)
+
+4. Django Core Architecture
+   - MVT Architecture (Model-View-Template) vs MVC
+   - Django Project Structure (settings.py, urls.py, manage.py)
+   - Request-Response Cycle (Middleware -> URL Check -> View -> Response)
+   - Middleware (Built-in vs Custom Middleware)
+   - Signals (post_save, pre_save, using receivers)
+
+5. Django Models & ORM (Crucial for Performance)
+   - Defining Models (Field types, Meta instructions)
+   - Relationships (ForeignKey, OneToOneField, ManyToManyField)
+   - QuerySets (Lazy evaluation, Caching)
+   - Optimization Techniques:
+     - select_related() vs prefetch_related() (N+1 Problem)
+     - .values(), .values_list(), .only(), .defer()
+   - Database Migrations (makemigrations, migrate, squashing)
+   - Manager & QuerySet customization
+
+6. Django Views & Templates
+   - Function-Based Views (FBV) vs Class-Based Views (CBV)
+   - Common Mixins (LoginRequiredMixin, PermissionRequiredMixin)
+   - URL Dispatching (path, re_path, converters)
+   - Template Tags & Filters (Custom tags)
+   - Context Processors
+
+7. Django REST Framework (DRF)
+   - Serializers (ModelSerializer, HyperlinkedModelSerializer)
+   - Views (APIView, GenericAPIView, ViewSets)
+   - Routers (DefaultRouter vs SimpleRouter)
+   - Authentication (Token, JWT, Session, Basic)
+   - Permissions (IsAuthenticated, IsAdminUser, Custom Permissions)
+   - Pagination & Filtering
+
+8. Testing & Deployment (Bonus/Essential)
+   - Unit Testing (pytest/unittest, APITestCase)
+   - Factory Boy / Faker for test data
+   - Deployment Basics (Gunicorn, Nginx, WSGI vs ASGI)
+   - Environment Variables (.env files)
