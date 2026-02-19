@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Essential Topics</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        header p { font-size: 1.1em; opacity: 0.9; }
+        .content {
+            padding: 40px;
+        }
+        .topic-section {
+            margin-bottom: 40px;
+            border-left: 5px solid #667eea;
+            padding-left: 20px;
+        }
+        .topic-section h2 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+        .subtopic {
+            margin-bottom: 25px;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .subtopic h3 {
+            color: #764ba2;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        .explanation {
+            margin: 10px 0;
+            font-size: 0.95em;
+        }
+        .example {
+            background: #e8f4f8;
+            border-left: 4px solid #2196F3;
+            padding: 12px;
+            margin-top: 10px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+        .example strong {
+            color: #2196F3;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        .highlight {
+            color: #764ba2;
+            font-weight: bold;
+        }
+        footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>☕ Java Essential Topics</h1>
+            <p>Complete Guide with Real-World Examples</p>
+        </header>
+
+        <div class="content">
+            <!-- Topic 1: Core Java Fundamentals -->
+            <div class="topic-section">
+                <h2>1. Core Java Fundamentals</h2>
+
+                <div class="subtopic">
+                    <h3>🎯 OOP Principles</h3>
+                    <div class="explanation">The four pillars of object-oriented programming: <span class="highlight">Encapsulation</span> (hiding details), <span class="highlight">Inheritance</span> (code reuse), <span class="highlight">Polymorphism</span> (multiple forms), <span class="highlight">Abstraction</span> (showing essential features).</div>
+                    <div class="example"><strong>Real Example:</strong> A <code>Vehicle</code> class has an abstract method <code>start()</code>. <code>Car</code> and <code>Bike</code> inherit from it and implement their own <code>start()</code> logic - that's polymorphism.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🔐 Access Modifiers</h3>
+                    <div class="explanation"><code>public</code> (accessible everywhere), <code>private</code> (only inside class), <code>protected</code> (same package + subclasses), <code>default</code> (same package only).</div>
+                    <div class="example"><strong>Real Example:</strong> Bank keeps account balance as <code>private</code> so direct modification isn't possible. Access is only through <code>public</code> methods like <code>withdraw()</code>.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>📝 String Handling</h3>
+                    <div class="explanation"><code>String</code> is immutable (can't change), <code>StringBuilder</code> is mutable (can change - fast), <code>StringBuffer</code> is mutable & thread-safe (slow). Use <code>StringBuilder</code> in loops.</div>
+                    <div class="example"><strong>Real Example:</strong> Building a dynamic SQL query in a loop: use <code>StringBuilder</code> instead of concatenating strings, saves memory and time.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>⚠️ Exception Handling</h3>
+                    <div class="explanation"><span class="highlight">Checked exceptions</span> (IOException) must be caught. <span class="highlight">Unchecked exceptions</span> (NullPointerException) are optional. Use <code>try-with-resources</code> for automatic resource closing.</div>
+                    <div class="example"><strong>Real Example:</strong> Reading a file: <code>try (BufferedReader br = new BufferedReader(new FileReader("file.txt")))</code> auto-closes the file even if exception occurs.</div>
+                </div>
+            </div>
+
+            <!-- Topic 2: Collections Framework -->
+            <div class="topic-section">
+                <h2>2. Collections Framework & Generics</h2>
+
+                <div class="subtopic">
+                    <h3>📚 List, Set, Map Differences</h3>
+                    <div class="explanation"><code>List</code> allows duplicates (ArrayList-fast lookup, LinkedList-fast insertion), <code>Set</code> no duplicates (HashSet-O(1), TreeSet-sorted), <code>Map</code> key-value pairs (HashMap-fast, TreeMap-sorted).</div>
+                    <div class="example"><strong>Real Example:</strong> User contact list = List, Unique user IDs = Set, User details (id→name) = Map.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🔑 HashMap Internal Working</h3>
+                    <div class="explanation">HashMap uses hash function to compute index, stores in buckets. Hash collision handled via chaining (Java 8+: linked list to red-black tree). Load factor default 0.75.</div>
+                    <div class="example"><strong>Real Example:</strong> Email → User ID mapping. Hash of "user@email.com" determines storage bucket.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🎭 Comparable vs Comparator</h3>
+                    <div class="explanation"><code>Comparable</code> is default sorting (implement <code>compareTo()</code>), <code>Comparator</code> is custom sorting (implement <code>compare()</code>). Multiple comparators possible.</div>
+                    <div class="example"><strong>Real Example:</strong> Student objects: sort by marks (Comparable) or by name (Comparator).</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🧬 Generics & Wildcards</h3>
+                    <div class="explanation">Generics ensure type safety at compile time. <code>List&lt;? extends Number&gt;</code> accepts Number & subclasses. Type erasure removes generic info at runtime.</div>
+                    <div class="example"><strong>Real Example:</strong> <code>List&lt;String&gt;</code> prevents adding Integer accidentally. Caught at compile time, not runtime.</div>
+                </div>
+            </div>
+
+            <!-- Topic 3: Java 8+ Features -->
+            <div class="topic-section">
+                <h2>3. Java 8+ Features (Functional Programming)</h2>
+
+                <div class="subtopic">
+                    <h3>⚡ Lambda Expressions</h3>
+                    <div class="explanation">Lambda reduces boilerplate code. Syntax: <code>(parameters) → expression</code>. Works with functional interfaces (single abstract method).</div>
+                    <div class="example"><strong>Real Example:</strong> Instead of anonymous class: <code>list.sort((a, b) → a.compareTo(b));</code> vs traditional Comparator.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🌊 Stream API</h3>
+                    <div class="explanation">Functional way to process collections. Intermediate ops (map, filter, flatMap) are lazy. Terminal ops (collect, forEach, reduce) trigger execution.</div>
+                    <div class="example"><strong>Real Example:</strong> Filter adults & get names: <code>list.stream().filter(p → p.getAge() &gt;= 18).map(Person::getName).collect(Collectors.toList());</code></div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>📦 Optional Class</h3>
+                    <div class="explanation"><code>Optional</code> represents value that may or may not exist. Replaces null checks. Use <code>isPresent()</code>, <code>orElse()</code>, <code>ifPresent()</code>.</div>
+                    <div class="example"><strong>Real Example:</strong> <code>Optional&lt;User&gt; user = userMap.get("123"); user.ifPresent(u → System.out.println(u.getName()));</code></div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🕐 Date & Time API</h3>
+                    <div class="explanation"><code>LocalDate</code> (date only), <code>LocalTime</code> (time only), <code>LocalDateTime</code> (both), <code>ZonedDateTime</code> (with timezone). Immutable unlike old Date.</div>
+                    <div class="example"><strong>Real Example:</strong> Meeting at 2 PM today: <code>LocalDateTime meeting = LocalDateTime.now().withHour(14).withMinute(0);</code></div>
+                </div>
+            </div>
+
+            <!-- Topic 4: Multithreading & Concurrency -->
+            <div class="topic-section">
+                <h2>4. Multithreading & Concurrency</h2>
+
+                <div class="subtopic">
+                    <h3>🔄 Thread Creation</h3>
+                    <div class="explanation">Extend <code>Thread</code> class (single inheritance limit) or implement <code>Runnable</code> interface (preferred). Use <code>Callable</code> for return values & exceptions.</div>
+                    <div class="example"><strong>Real Example:</strong> Download multiple files concurrently: create threads for each file download instead of sequential.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🔒 Synchronization</h3>
+                    <div class="explanation"><code>synchronized</code> methods/blocks prevent race conditions. Only one thread enters at a time. Slower but safe.</div>
+                    <div class="example"><strong>Real Example:</strong> Bank account withdrawal: synchronized method prevents two withdrawals happening simultaneously from one account.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>💼 Executor Framework</h3>
+                    <div class="explanation">Thread pools manage threads efficiently. Fixed (fixed size), Cached (grows as needed), Scheduled (delayed/recurring tasks), Single (one thread).</div>
+                    <div class="example"><strong>Real Example:</strong> Web server with 100 requests: use <code>ExecutorService executor = Executors.newFixedThreadPool(10);</code> limits threads to 10.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🔗 CompletableFuture</h3>
+                    <div class="explanation">Async programming without callbacks. Chain operations with <code>thenApply()</code>, <code>thenAccept()</code>, <code>thenCombine()</code>.</div>
+                    <div class="example"><strong>Real Example:</strong> Fetch user data, then fetch orders asynchronously: <code>getUser().thenCompose(user → getOrders(user.id));</code></div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>💾 Java Memory Model</h3>
+                    <div class="explanation">Defines visibility of shared variable changes between threads. <code>volatile</code> keyword ensures changes visible immediately.</div>
+                    <div class="example"><strong>Real Example:</strong> Flag to stop thread loop: make it <code>volatile boolean stopFlag;</code> so thread sees update immediately.</div>
+                </div>
+            </div>
+
+            <!-- Topic 5: Memory Management -->
+            <div class="topic-section">
+                <h2>5. Memory Management & JVM Internals</h2>
+
+                <div class="subtopic">
+                    <h3>⚙️ JVM Architecture</h3>
+                    <div class="explanation">Classloader loads classes, Execution engine converts bytecode to machine code, Runtime provides memory areas (Heap, Stack, etc).</div>
+                    <div class="example"><strong>Real Example:</strong> When you run <code>java MyApp</code>, ClassLoader loads MyApp.class, executes main() method.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🧠 Heap vs Stack</h3>
+                    <div class="explanation">Stack is LIFO (method calls, local variables - fast, limited). Heap is dynamic (objects - slower, large). Stack cleaned automatically, Heap needs GC.</div>
+                    <div class="example"><strong>Real Example:</strong> <code>int x = 5;</code> stored on stack. <code>User user = new User();</code> reference on stack, object on heap.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🗑️ Garbage Collection</h3>
+                    <div class="explanation">GC identifies unreferenced objects, cleans memory. G1GC recommended for heaps &gt; 4GB. Gens: Eden (young objects), Survivor, Tenured (old objects).</div>
+                    <div class="example"><strong>Real Example:</strong> Creating millions of objects in a loop: GC periodically cleans unused objects, else OutOfMemoryError.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🔗 Reference Types</h3>
+                    <div class="explanation">Strong (normal), Weak (GC collects if only weak refs), Soft (GC collects if memory needed), Phantom (no value, notification on GC).</div>
+                    <div class="example"><strong>Real Example:</strong> Cache: use WeakReference so cache doesn't prevent GC if memory needed.</div>
+                </div>
+            </div>
+
+            <!-- Topic 6: I/O & Networking -->
+            <div class="topic-section">
+                <h2>6. Input/Output (I/O) & Networking</h2>
+
+                <div class="subtopic">
+                    <h3>📖 File I/O</h3>
+                    <div class="explanation"><code>FileReader</code> reads character by character, <code>BufferedReader</code> reads line by line (faster). <code>FileInputStream</code> for binary data.</div>
+                    <div class="example"><strong>Real Example:</strong> Read config file line by line: <code>BufferedReader br = new BufferedReader(new FileReader("config.txt"));</code></div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>💾 Serialization</h3>
+                    <div class="explanation">Convert objects to bytes for storage/transmission. Use <code>serialVersionUID</code> for version control. <code>transient</code> excludes fields from serialization.</div>
+                    <div class="example"><strong>Real Example:</strong> Save user session to disk or send over network: serialize User object, deserialize on retrieval.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🚀 NIO (Non-blocking I/O)</h3>
+                    <div class="explanation">Channels & Buffers for non-blocking operations. Selectors allow handling many connections with few threads.</div>
+                    <div class="example"><strong>Real Example:</strong> High-performance web server handling 10,000 connections: NIO is much better than blocking I/O.</div>
+                </div>
+            </div>
+
+            <!-- Topic 7: Design Patterns -->
+            <div class="topic-section">
+                <h2>7. Design Patterns</h2>
+
+                <div class="subtopic">
+                    <h3>👤 Singleton</h3>
+                    <div class="explanation">Ensure only one instance exists. Use private constructor, static getInstance(). Double-checked locking for thread safety.</div>
+                    <div class="example"><strong>Real Example:</strong> Database connection pool, Logger, ConfigManager - only one instance needed.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🏭 Factory Pattern</h3>
+                    <div class="explanation">Create objects without specifying exact classes. Central place for object creation, easy to change implementation.</div>
+                    <div class="example"><strong>Real Example:</strong> <code>DatabaseFactory.getDatabase("mysql")</code> returns MySQL or PostgreSQL implementation.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🛠️ Builder Pattern</h3>
+                    <div class="explanation">Construct complex objects step by step. Fluent interface, optional parameters, immutable result.</div>
+                    <div class="example"><strong>Real Example:</strong> <code>new User.Builder().name("John").email("john@example.com").age(30).build();</code></div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>👀 Observer Pattern</h3>
+                    <div class="explanation">Notify multiple objects about state changes. Subject (observable) notifies observers when state changes.</div>
+                    <div class="example"><strong>Real Example:</strong> Stock price changes: notify all investors subscribed to that stock.</div>
+                </div>
+            </div>
+
+            <!-- Topic 8: Modern Java Features -->
+            <div class="topic-section">
+                <h2>8. Modern Java Features (Java 9 - 21)</h2>
+
+                <div class="subtopic">
+                    <h3>📦 Java 9 Modules</h3>
+                    <div class="explanation">Encapsulate packages, explicit exports. Large projects benefit from strong encapsulation and clear dependencies.</div>
+                    <div class="example"><strong>Real Example:</strong> Large enterprise application divided into modules like payment-module, user-module for better organization.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>✨ Java 10 - Local Variable Type Inference (var)</h3>
+                    <div class="explanation"><code>var list = new ArrayList&lt;String&gt;();</code> instead of <code>ArrayList&lt;String&gt; list = ...</code>. Type inferred from right-hand side.</div>
+                    <div class="example"><strong>Real Example:</strong> <code>var users = userRepository.findAll();</code> cleaner than explicitly typing the generic.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>📝 Java 14 - Records</h3>
+                    <div class="explanation">Immutable data carriers. Auto-generates constructor, equals(), hashCode(), toString(). Replaces Java Beans boilerplate.</div>
+                    <div class="example"><strong>Real Example:</strong> <code>record User(String name, String email, int age) {}</code> instead of 50 lines of boilerplate code.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🔐 Java 16 - Pattern Matching for instanceof</h3>
+                    <div class="explanation">Reduces casting boilerplate. <code>if (obj instanceof String s) { s.length(); }</code></div>
+                    <div class="example"><strong>Real Example:</strong> No more <code>if (obj instanceof String) { String s = (String) obj; }</code> three-liner.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>⚡ Java 21 - Virtual Threads (Project Loom)</h3>
+                    <div class="explanation">Millions of lightweight threads instead of OS threads. Game changer for high-concurrency applications.</div>
+                    <div class="example"><strong>Real Example:</strong> Web server handling 1 million concurrent connections: use virtual threads instead of 1 million OS threads.</div>
+                </div>
+            </div>
+
+            <!-- Topic 9: Testing -->
+            <div class="topic-section">
+                <h2>9. Testing & Quality</h2>
+
+                <div class="subtopic">
+                    <h3>🧪 JUnit 5</h3>
+                    <div class="explanation"><code>@Test</code> marks test method, <code>@BeforeEach</code> setup before each test, <code>@AfterEach</code> cleanup, <code>@DisplayName</code> for readable names.</div>
+                    <div class="example"><strong>Real Example:</strong> Test login: <code>@Test @DisplayName("Valid login returns user") void testLogin() { ... }</code></div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🎭 Mockito</h3>
+                    <div class="explanation">Mock external dependencies. <code>@Mock</code> creates mock, <code>@InjectMocks</code> injects into test class. <code>when-then</code> define behavior.</div>
+                    <div class="example"><strong>Real Example:</strong> Test UserService without database: mock UserRepository, control database responses.</div>
+                </div>
+            </div>
+
+            <!-- Topic 10: Database Connectivity -->
+            <div class="topic-section">
+                <h2>10. Database Connectivity (JDBC & ORM)</h2>
+
+                <div class="subtopic">
+                    <h3>🔗 JDBC</h3>
+                    <div class="explanation">Java Database Connectivity. DriverManager → Connection → Statement → ResultSet. Use PreparedStatement to prevent SQL injection.</div>
+                    <div class="example"><strong>Real Example:</strong> Fetch user by ID: <code>PreparedStatement ps = conn.prepareStatement("SELECT * FROM users WHERE id=?"); ps.setInt(1, userId);</code></div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🏢 Hibernate/JPA - Entity Lifecycle</h3>
+                    <div class="explanation">Transient (new, not in DB), Persistent (tracked by session), Detached (session closed), Removed (marked for deletion).</div>
+                    <div class="example"><strong>Real Example:</strong> Create user → session.save() → Persistent. Close session → Detached. Changes not auto-saved.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>⚡ Fetch Types - Lazy vs Eager</h3>
+                    <div class="explanation">Lazy loads related data on-demand (efficient, solves N+1), Eager loads immediately (wastes memory if unused).</div>
+                    <div class="example"><strong>Real Example:</strong> User with 100 Orders: use Lazy loading unless you always need orders, else extra memory waste.</div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Java Essential Topics Guide • Created for Interview & Learning Preparation</p>
+            <p>Last Updated: 2026</p>
+        </footer>
+    </div>
+</body>
+</html>

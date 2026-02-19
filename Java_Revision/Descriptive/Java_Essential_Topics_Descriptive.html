@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Essential Topics - Descriptive Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        header {
+            background: linear-gradient(135deg, #f5af19 0%, #f12711 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 40px;
+        }
+        .topic-section {
+            margin-bottom: 50px;
+            border-left: 5px solid #f5af19;
+            padding-left: 30px;
+        }
+        .topic-section h2 {
+            color: #f12711;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px dashed #eee;
+        }
+        .subtopic {
+            background: #f9f9f9;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 15px;
+            border: 1px solid #e0e0e0;
+        }
+        .subtopic h3 {
+            color: #764ba2;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        .subtopic h4 {
+            color: #667eea;
+            margin: 15px 0 10px 0;
+            font-size: 1.1em;
+        }
+        .example-box {
+            background: linear-gradient(135deg, #e8f4f8 0%, #d1ecf1 100%);
+            border-left: 4px solid #17a2b8;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        .example-box h5 {
+            color: #17a2b8;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9em;
+            margin: 15px 0;
+        }
+        .highlight {
+            background: linear-gradient(120deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .key-point {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+        .key-point::before {
+            content: "💡 ";
+        }
+        ul, ol {
+            margin-left: 25px;
+            margin-top: 10px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .comparison-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>☕ Java Essential Topics</h1>
+            <p>A Comprehensive Descriptive Guide with Real-World Examples</p>
+        </header>
+        
+        <div class="content">
+            <!-- Topic 1: Core Java Fundamentals -->
+            <section class="topic-section">
+                <h2>1. Core Java Fundamentals</h2>
+                
+                <div class="subtopic">
+                    <h3>Object-Oriented Programming (OOP) Principles</h3>
+                    <p>OOP is a programming paradigm that organizes software design around data (objects) rather than functions and logic. Java is fundamentally an OOP language.</p>
+                    
+                    <h4>Encapsulation</h4>
+                    <p><strong>Definition:</strong> Encapsulation is the bundling of data (variables) and methods that operate on that data within a single unit (class), while restricting direct access to some components.</p>
+                    
+                    <div class="example-box">
+                        <h5>🌍 Real-World Example: Bank Account</h5>
+                        <p>Think of a bank ATM machine. You can deposit, withdraw, and check balance, but you cannot directly access the bank's internal systems or modify your balance without going through proper channels.</p>
+                    </div>
+                    
+                    <div class="code-block">
+<pre>public class BankAccount {
+    private double balance;  // Hidden from outside
+    
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+        }
+    }
+    
+    public double getBalance() {
+        return balance;  // Controlled access
+    }
+}</pre>
+                    </div>
+                    
+                    <h4>Inheritance</h4>
+                    <p><strong>Definition:</strong> Inheritance allows a class to inherit properties and methods from another class, promoting code reuse and establishing a parent-child relationship.</p>
+                    
+                    <div class="example-box">
+                        <h5>🌍 Real-World Example: Vehicle Hierarchy</h5>
+                        <p>All cars, bikes, and trucks are vehicles. They share common properties like speed, color, and methods like start() and stop(). A Car "is-a" Vehicle.</p>
+                    </div>
+                    
+                    <div class="code-block">
+<pre>class Vehicle {
+    protected String brand;
+    public void start() { System.out.println("Vehicle started"); }
+}
+
+class Car extends Vehicle {
+    private int numberOfDoors;
+    
+    @Override
+    public void start() {
+        System.out.println("Car engine started with key");
+    }
+}</pre>
+                    </div>
+                    
+                    <h4>Polymorphism</h4>
+                    <p><strong>Definition:</strong> Polymorphism means "many forms." It allows objects of different classes to be treated as objects of a common superclass. There are two types: compile-time (method overloading) and runtime (method overriding).</p>
+                    
+                    <div class="example-box">
+                        <h5>🌍 Real-World Example: Payment System</h5>
+                        <p>When you "pay" at a store, you might use cash, credit card, or mobile payment. The action is "pay," but the implementation differs based on the payment method.</p>
+                    </div>
+                    
+                    <div class="code-block">
+<pre>interface Payment {
+    void pay(double amount);
+}
+
+class CreditCard implements Payment {
+    public void pay(double amount) {
+        System.out.println("Paid $" + amount + " using Credit Card");
+    }
+}
+
+class CashPayment implements Payment {
+    public void pay(double amount) {
+        System.out.println("Paid $" + amount + " in cash");
+    }
+}
+
+// Usage - same interface, different behavior
+Payment payment = new CreditCard();
+payment.pay(100);  // Outputs: Paid $100 using Credit Card</pre>
+                    </div>
+                    
+                    <h4>Abstraction</h4>
+                    <p><strong>Definition:</strong> Abstraction hides complex implementation details and shows only the essential features of an object to the outside world.</p>
+                    
+                    <div class="example-box">
+                        <h5>🌍 Real-World Example: TV Remote</h5>
+                        <p>When you press the "Volume Up" button on a TV remote, you don't need to know the internal circuit operations. You just use the abstract interface (buttons) to control the TV.</p>
+                    </div>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>Classes, Objects, and Constructors</h3>
+                    <p><strong>Class:</strong> A blueprint or template for creating objects. It defines properties (fields) and behaviors (methods).</p>
+                    <p><strong>Object:</strong> An instance of a class - a concrete entity created from the class blueprint.</p>
+                    
+                    <h4>Types of Constructors</h4>
+                    <ul>
+                        <li><strong>Default Constructor:</strong> No-argument constructor (provided by Java if you don't define any)</li>
+                        <li><strong>Parameterized Constructor:</strong> Takes arguments to initialize object state</li>
+                        <li><strong>Copy Constructor:</strong> Creates a new object by copying another object (Java doesn't provide this automatically)</li>
+                    </ul>
+                    
+                    <div class="example-box">
+                        <h5>🌍 Real-World Example: Employee Registration System</h5>
+                        <p>When HR creates a new employee record, they might create a blank form (default), fill in details (parameterized), or copy an existing employee's role to a new hire (copy).</p>
+                    </div>
+                    
+                    <div class="code-block">
+<pre>public class Employee {
+    private String name;
+    private int id;
+    
+    // Default Constructor
+    public Employee() {
+        this.name = "Unknown";
+        this.id = 0;
+    }
+    
+    // Parameterized Constructor
+    public Employee(String name, int id) {
+        this.name = name;
+        this.id = id;
+    }
+    
+    // Copy Constructor
+    public Employee(Employee other) {
+        this.name = other.name;
+        this.id = other.id;
+    }
+}</pre>
+                    </div>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>Interface vs Abstract Class</h3>
+                    
+                    <table class="comparison-table">
+                        <tr>
+                            <th>Feature</th>
+                            <th>Interface</th>
+                            <th>Abstract Class</th>
+                        </tr>
+                        <tr>
+                            <td>Methods</td>
+                            <td>Abstract by default (can have default/static since Java 8)</td>
+                            <td>Can have both abstract and concrete methods</td>
+                        </tr>
+                        <tr>
+                            <td>Variables</td>
+                            <td>public static final only</td>
+                            <td>Can have any type of variables</td>
+                        </tr>
+                        <tr>
+                            <td>Multiple Inheritance</td>
+                            <td>Yes (a class can implement multiple interfaces)</td>
+                            <td>No (a class can extend only one abstract class)</td>
+                        </tr>
+                        <tr>
+                            <td>When to Use</td>
+                            <td>Define a contract/capability</td>
+                            <td>Share common code among related classes</td>
+                        </tr>
+                    </table>
+                    
+                    <div class="example-box">
+                        <h5>🌍 Real-World Example</h5>
+                        <p><strong>Interface (Flyable):</strong> Birds can fly, airplanes can fly, drones can fly. They're not related, but they share the "flyable" capability.</p>
+                        <p><strong>Abstract Class (Animal):</strong> Dogs, cats, and lions are all animals. They share common properties like age and weight, and methods like eat() and sleep().</p>
+                    </div>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>Access Modifiers</h3>
+                    <p>Access modifiers control the visibility and accessibility of classes, methods, and variables.</p>
+                    
+                    <table class="comparison-table">
+                        <tr>
+                            <th>Modifier</th>
+                            <th>Same Class</th>
+                            <th>Same Package</th>
+                            <th>Subclass</th>
+                            <th>Different Package</th>
+                        </tr>
+                        <tr>
+                            <td>public</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                        </tr>
+                        <tr>
+                            <td>protected</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>❌</td>
+                        </tr>
+                        <tr>
+                            <td>default (no modifier)</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                            <td>❌</td>
+                            <td>❌</td>
+                        </tr>
+                        <tr>
+                            <td>private</td>
+                            <td>✅</td>
+                            <td>❌</td>
+                            <td>❌</td>
+                            <td>❌</td>
+                        </tr>
+                    </table>
+                    
+                    <div class="example-box">
+                        <h5>🌍 Real-World Example: Company Access Levels</h5>
+                        <p><strong>public:</strong> Company website - anyone can access<br>
+                        <strong>protected:</strong> Internal training documents - employees and subsidiaries<br>
+                        <strong>default:</strong> Department meetings - only people in that department<br>
+                        <strong>private:</strong> CEO's personal notes - only the CEO</p>
+                    </div>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>Keywords: final, static, this, super</h3>
+                    
+                    <h4>final Keyword</h4>
+                    <ul>
+                        <li><strong>final variable:</strong> Cannot be reassigned (constant)</li>
+                        <li><strong>final method:</strong> Cannot be overridden by subclasses</li>
+                        <li><strong>final class:</strong> Cannot be extended</li>
+                    </ul>
+                    
+                    <h4>static Keyword</h4>
+                    <p>Belongs to the class rather than an instance. Shared among all objects.</p>
+                    
+                    <div class="example-box">
+                        <h5>🌍 Real-World Example: Counter</h5>
+                        <p>A static counter in a "Visitor" class tracks total visitors across all instances, like a turnstile counter at a museum entrance.</p>
+                    </div>
+                    
+                    <div class="code-block">
+<pre>class Visitor {
+    private static int totalVisitors = 0;  // Shared
+    private String name;
+    
+    public Visitor(String name) {
+        this.name = name;
+        totalVisitors++;
+    }
+    
+    public static int getTotalVisitors() {
+        return totalVisitors;
+    }
+}</pre>
+                    </div>
+                    
+                    <h4>this Keyword</h4>
+                    <p>Refers to the current object instance. Used to distinguish between instance variables and parameters.</p>
+                    
+                    <h4>super Keyword</h4>
+                    <p>Refers to the parent class. Used to call parent constructors or methods.</p>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>Exception Handling</h3>
+                    <p>Exception handling is a mechanism to handle runtime errors gracefully without crashing the program.</p>
+                    
+                    <h4>Checked vs Unchecked Exceptions</h4>
+                    <ul>
+                        <li><strong>Checked Exceptions:</strong> Must be handled at compile time (IOException, SQLException)</li>
+                        <li><strong>Unchecked Exceptions:</strong> Runtime exceptions (NullPointerException, ArrayIndexOutOfBoundsException)</li>
+                    </ul>
+                    
+                    <div class="example-box">
+                        <h5>🌍 Real-World Example: File Processing</h5>
+                        <p>When reading a file, the file might not exist (checked exception - you must plan for it). But if you try to access a null object, that's a programming error (unchecked).</p>
+                    </div>
+                    
+                    <div class="code-block">
+<pre>// try-with-resources (automatically closes resources)
+try (BufferedReader reader = new BufferedReader(new FileReader("data.txt"))) {
+    String line = reader.readLine();
+} catch (FileNotFoundException e) {
+    System.out.println("File not found: " + e.getMessage());
+} catch (IOException e) {
+    System.out.println("Error reading file: " + e.getMessage());
+} finally {
+    System.out.println("Cleanup completed");
+}
+
+// Custom Exception
+public class InsufficientFundsException extends Exception {
+    public InsufficientFundsException(String message) {
+        super(message);
+    }
+}</pre>
+                    </div>
+                    
+                    <div class="key-point">
+                        <strong>throw vs throws:</strong> <code>throw</code> is used to explicitly throw an exception. <code>throws</code> is used in method signature to declare that a method might throw an exception.
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Topic 2: Collections Framework & Generics -->
+            <section class="topic-section">
+                <h2>2. Collections Framework & Generics</h2>
+                
+                <div class="subtopic">
+                    <h3>List Interface</h3>
+                    <p>Lists are ordered collections that allow duplicate elements and maintain insertion order.</p>
+                    
+                    <h4>ArrayList</h4>
+                    <p>Backed by a dynamic array. Fast random access (O(1)), slow insertions/deletions in middle (O(n)).</p>
+                    
+                    <h4>LinkedList</h4>
+                    <p>Doubly-linked list. Fast insertions/deletions (O(1) at ends), slow random access (O(n)).</p>
+                    
+                    <div class="example-box">
+                        <h5>🌍 Real-World Example</h5>
+                        <p><strong>ArrayList:</strong> Like a bookshelf where you can quickly grab any book by position, but inserting a book in the middle requires shifting others.</p>
+                        <p><strong>LinkedList:</strong> Like a train where adding/removing carriages at ends is easy, but getting to carriage #50 requires walking through all previous ones.</p>
+                    </div>
+                    
+                    <table class="comparison-table">
+                        <tr>
+                            <th>Operation</th>
+                            <th>ArrayList</th>
+                            <th>LinkedList</th>
+                        </tr>
+                        <tr>
+                            <td>get(index)</td>
+                            <td>O(1)</td>
+                            <td>O(n)</td>
+                        </tr>
+                        <tr>
+                            <td>add(element) at end</td>
+                            <td>O(1) amortized</td>
+                            <td>O(1)</td>
+                        </tr>
+                        <tr>
+                            <td>add(index, element)</td>
+                            <td>O(n)</td>
+                            <td>O(n)</td>
+                        </tr>
+                        <tr>
+                            <td>remove(index)</td>
+                            <td>O(n)</td>
+                            <td>O(n)</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>Set Interface</h3>
+                    <p>Sets are collections that do not allow duplicate elements.</p>
+                    
+                    <h4>HashSet</h4>
+                    <p>Backed by a HashMap. No order guarantee. O(1) for add, remove, contains.</p>
+                    
+                    <h4>LinkedHashSet</h4>
+                    <p>Maintains insertion order using a linked list.</p>
+                    
+                    <h4>TreeSet</h4>
+                    <p>Sorted order (natural or custom). O(log n) operations. Backed by Red-Black Tree.</p>
+                    
+                    <div class="example-box">
+                        <h5>🌍 Real-World Example: Email List</h5>
+                        <p>Use HashSet to store email subscribers - no duplicates, fast lookup to check if someone is already subscribed.</p>
+                    </div>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>Map Interface</h3>
+                    <p>Maps store key-value pairs. Keys must be unique.</p>
+                    
+                    <h4>HashMap Internal Working</h4>
+                    <ol>
+                        <li>Computes hashCode() of the key</li>
+                        <li>Maps hash to bucket index using: index = hash & (n-1)</li>
+                        <li>If collision occurs, stores in linked list (Java 8+: converts to tree if bucket size > 8)</li>
+                        <li>On get(), uses equals() to find exact match in bucket</li>
+                    </ol>
+                    
+                    <div class="example-box">
+                        <h5>🌍 Real-World Example: Phone Directory</h5>
+                        <p>HashMap is like a phone directory where names (keys) map to phone numbers (values). You can quickly look up anyone's number by their name.</p>
+                    </div>
+                    
+                    <div class="key-point">
+                        <strong>ConcurrentHashMap:</strong> Thread-safe version that allows concurrent reads and limited concurrent writes using segment locking (or CAS operations in Java 8+).
+                    </div>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>Comparable vs Comparator</h3>
+                    
+                    <table class="comparison-table">
+                        <tr>
+                            <th>Comparable</th>
+                            <th>Comparator</th>
+                        </tr>
+                        <tr>
+                            <td>Defines natural ordering</td>
+                            <td>Defines custom ordering</td>
+                        </tr>
+                        <tr>
+                            <td>compareTo(Object o)</td>
+                            <td>compare(Object o1, Object o2)</td>
+                        </tr>
+                        <tr>
+                            <td>In the same class</td>
+                            <td>In a separate class</td>
+                        </tr>
+                        <tr>
+                            <td>Single sorting sequence</td>
+                            <td>Multiple sorting sequences</td>
+                        </tr>
+                    </table>
+                    
+                    <div class="code-block">
+<pre>// Comparable - natural ordering by age
+class Employee implements Comparable&lt;Employee&gt; {
+    String name;
+    int age;
+    
+    @Override
+    public int compareTo(Employee other) {
+        return this.age - other.age;
+    }
+}
+
+// Comparator - custom ordering by name
+Comparator&lt;Employee&gt; byName = (e1, e2) -> e1.name.compareTo(e2.name);
+Collections.sort(employees, byName);</pre>
+                    </div>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>Generics</h3>
+                    <p>Generics provide type safety at compile time, eliminating the need for casting and preventing ClassCastException at runtime.</p>
+                    
+                    <h4>Wildcards</h4>
+                    <ul>
+                        <li><strong>? (Unbounded):</strong> Unknown type - List&lt;?&gt;</li>
+                        <li><strong>? extends T (Upper Bounded):</strong> T or its subtypes - List&lt;? extends Number&gt;</li>
+                        <li><strong>? super T (Lower Bounded):</strong> T or its supertypes - List&lt;? super Integer&gt;</li>
+                    </ul>
+                    
+                    <div class="example-box">
+                        <h5>🌍 Real-World Example: Garage</h5>
+                        <p><strong>List&lt;? extends Vehicle&gt;:</strong> A garage that can hold any type of vehicle (Car, Bike, Truck) - you can take vehicles out but can't put specific types in.</p>
+                        <p><strong>List&lt;? super Car&gt;:</strong> A parking lot for Cars and any supertype - you can park Cars, but what you get out might be just "a Vehicle".</p>
+                    </div>
+                    
+                    <div class="key-point">
+                        <strong>Type Erasure:</strong> Generics are implemented using type erasure - generic type information is removed at runtime and replaced with Object (or the bound). This is why you can't do <code>new T()</code> or <code>instanceof T</code>.
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Topic 3: Java 8+ Features -->
+            <section class="topic-section">
+                <h2>3. Java 8+ Features (Functional Programming)</h2>
+                
+                <div class="subtopic">
+                    <h3>Lambda Expressions</h3>
+                    <p>Lambda expressions are anonymous functions that provide a concise way to implement functional interfaces.</p>
+                    
+                    <div class="code-block">
+<pre>// Before Lambda
+Runnable runnable = new Runnable() {
+    @Override
+    public void run() {
+        System.out.println("Hello");
+    }
+};
+
+// With Lambda
+Runnable runnable = () -> System.out.println("Hello");
+
+// Lambda with parameters
+BiFunction&lt;Integer, Integer, Integer&gt; add = (a, b) -> a + b;</pre>
+                    </div>
+                    
+                    <div class="example-box">
+                        <h5>🌍 Real-World Example: Event Handling</h5>
+                        <p>When you click a button in a GUI application, instead of creating a whole class to handle the click, you can use a lambda: <code>button.onClick(() -> saveDocument())</code></p>
+                    </div>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>Functional Interfaces</h3>
+                    <p>An interface with exactly one abstract method. Can be annotated with @FunctionalInterface.</p>
+                    
+                    <table class="comparison-table">
+                        <tr>
+                            <th>Interface</th>
+                            <th>Method</th>
+                            <th>Use Case</th>
+                        </tr>
+                        <tr>
+                            <td>Predicate&lt;T&gt;</td>
+                            <td>boolean test(T t)</td>
+                            <td>Filtering, validation</td>
+                        </tr>
+                        <tr>
+                            <td>Function&lt;T, R&gt;</td>
+                            <td>R apply(T t)</td>
+                            <td>Transformation</td>
+                        </tr>
+                        <tr>
+                            <td>Consumer&lt;T&gt;</td>
+                            <td>void accept(T t)</td>
+                            <td>Processing without return</td>
+                        </tr>
+                        <tr>
+                            <td>Supplier&lt;T&gt;</td>
+                            <td>T get()</td>
+                            <td>Lazy generation of values</td>
+                        </tr>
+                    </table>
+                    
+                    <div class="code-block">
+<pre>Predicate&lt;String&gt; isLongName = name -> name.length() > 5;
+Function&lt;String, Integer&gt; getLength = String::length;
+Consumer&lt;String&gt; printer = System.out::println;
+Supplier&lt;LocalDate&gt; today = LocalDate::now;</pre>
+                    </div>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>Stream API</h3>
+                    <p>Streams provide a declarative way to process collections of data using functional-style operations.</p>
+                    
+                    <h4>Intermediate vs Terminal Operations</h4>
+                    <ul>
+                        <li><strong>Intermediate:</strong> Return a stream (lazy evaluation) - filter, map, flatMap, sorted, distinct</li>
+                        <li><strong>Terminal:</strong> Produce a result (triggers processing) - collect, forEach, reduce, count, findFirst</li>
+                    </ul>
+                    
+                    <div class="example-box">
+                        <h5>🌍 Real-World Example: Processing Orders</h5>
+                        <p>Filter orders by status, transform to order amounts, and calculate total revenue - all in a fluent pipeline.</p>
+                    </div>
+                    
+                    <div class="code-block">
+<pre>List&lt;Order&gt; orders = getOrders();
+
+// Process orders
+double totalRevenue = orders.stream()
+    .filter(order -> order.getStatus() == Status.COMPLETED)  // Filter
+    .map(Order::getAmount)                                    // Transform
+    .reduce(0.0, Double::sum);                               // Aggregate
+
+// Collect to list
+List&lt;String&gt; customerNames = orders.stream()
+    .map(Order::getCustomerName)
+    .distinct()
+    .sorted()
+    .collect(Collectors.toList());
+
+// FlatMap - Flatten nested structures
+List&lt;String&gt; allItems = orders.stream()
+    .flatMap(order -> order.getItems().stream())
+    .collect(Collectors.toList());</pre>
+                    </div>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>Optional Class</h3>
+                    <p>Optional is a container that may or may not contain a non-null value. It helps avoid NullPointerException.</p>
+                    
+                    <div class="code-block">
+<pre>Optional&lt;User&gt; userOpt = findUserById(id);
+
+// Safe operations
+String name = userOpt
+    .map(User::getName)
+    .orElse("Anonymous");
+
+// Throw exception if not present
+User user = userOpt.orElseThrow(() -> new UserNotFoundException(id));
+
+// Do something only if present
+userOpt.ifPresent(u -> sendWelcomeEmail(u));</pre>
+                    </div>
+                    
+                    <div class="example-box">
+                        <h5>🌍 Real-World Example: Database Query</h5>
+                        <p>When querying a database for a user by ID, the user might not exist. Instead of returning null and risking NPE, return Optional&lt;User&gt; to make the absence explicit.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Topic 4: Multithreading & Concurrency -->
+            <section class="topic-section">
+                <h2>4. Multithreading & Concurrency</h2>
+                
+                <div class="subtopic">
+                    <h3>Thread Lifecycle</h3>
+                    <p>A thread goes through several states during its lifetime:</p>
+                    <ul>
+                        <li><strong>NEW:</strong> Thread created but not started</li>
+                        <li><strong>RUNNABLE:</strong> Thread is running or ready to run</li>
+                        <li><strong>BLOCKED:</strong> Waiting to acquire a lock</li>
+                        <li><strong>WAITING:</strong> Waiting indefinitely for another thread</li>
+                        <li><strong>TIMED_WAITING:</strong> Waiting for a specified time</li>
+                        <li><strong>TERMINATED:</strong> Thread has completed execution</li>
+                    </ul>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>Creating Threads</h3>
+                    
+                    <div class="code-block">
+<pre>// Method 1: Extend Thread
+class MyThread extends Thread {
+    public void run() {
+        System.out.println("Thread running");
+    }
+}
+
+// Method 2: Implement Runnable (Preferred - allows extending other classes)
+class MyRunnable implements Runnable {
+    public void run() {
+        System.out.println("Runnable running");
+    }
+}
+
+// Method 3: Callable (Returns a result)
+Callable&lt;Integer&gt; callable = () -> {
+    return computeValue();
+};
+Future&lt;Integer&gt; future = executor.submit(callable);
+Integer result = future.get();  // Blocks until result is ready</pre>
+                    </div>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>Synchronization</h3>
+                    <p>Synchronization prevents multiple threads from accessing shared resources simultaneously, avoiding race conditions.</p>
+                    
+                    <div class="example-box">
+                        <h5>🌍 Real-World Example: Bank Withdrawal</h5>
+                        <p>Two ATMs trying to withdraw from the same account simultaneously. Without synchronization, both might see $100 and both withdraw $100, resulting in -$100 balance.</p>
+                    </div>
+                    
+                    <div class="code-block">
+<pre>public class BankAccount {
+    private double balance;
+    
+    // Synchronized method
+    public synchronized void withdraw(double amount) {
+        if (balance >= amount) {
+            balance -= amount;
+        }
+    }
+    
+    // Synchronized block (more granular)
+    public void deposit(double amount) {
+        synchronized(this) {
+            balance += amount;
+        }
+    }
+}</pre>
+                    </div>
+                    
+                    <h4>Volatile Keyword</h4>
+                    <p>Ensures visibility of changes across threads. When a variable is marked volatile, reads and writes go directly to main memory, not CPU cache.</p>
+                    
+                    <h4>Atomic Classes</h4>
+                    <p>Classes like AtomicInteger, AtomicLong provide thread-safe operations without explicit synchronization using Compare-And-Swap (CAS) operations.</p>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>Executor Framework</h3>
+                    <p>The Executor framework provides a high-level API for managing thread pools and task execution.</p>
+                    
+                    <table class="comparison-table">
+                        <tr>
+                            <th>Pool Type</th>
+                            <th>Description</th>
+                            <th>Use Case</th>
+                        </tr>
+                        <tr>
+                            <td>FixedThreadPool</td>
+                            <td>Fixed number of threads</td>
+                            <td>Known, bounded workload</td>
+                        </tr>
+                        <tr>
+                            <td>CachedThreadPool</td>
+                            <td>Creates threads as needed, reuses idle ones</td>
+                            <td>Many short-lived tasks</td>
+                        </tr>
+                        <tr>
+                            <td>ScheduledThreadPool</td>
+                            <td>For scheduled tasks</td>
+                            <td>Periodic/delayed execution</td>
+                        </tr>
+                        <tr>
+                            <td>SingleThreadExecutor</td>
+                            <td>Single worker thread</td>
+                            <td>Sequential task execution</td>
+                        </tr>
+                    </table>
+                    
+                    <div class="code-block">
+<pre>ExecutorService executor = Executors.newFixedThreadPool(4);
+
+// Submit tasks
+Future&lt;String&gt; future = executor.submit(() -> {
+    return "Result";
+});
+
+// CompletableFuture for async operations
+CompletableFuture.supplyAsync(() -> fetchData())
+    .thenApply(data -> processData(data))
+    .thenAccept(result -> saveResult(result))
+    .exceptionally(ex -> handleError(ex));
+
+// Always shutdown
+executor.shutdown();</pre>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Topic 5: Memory Management & JVM -->
+            <section class="topic-section">
+                <h2>5. Memory Management & JVM Internals</h2>
+                
+                <div class="subtopic">
+                    <h3>JVM Architecture</h3>
+                    <ul>
+                        <li><strong>Class Loader:</strong> Loads .class files into memory (Bootstrap, Extension, Application loaders)</li>
+                        <li><strong>Runtime Data Areas:</strong> Method Area, Heap, Stack, PC Register, Native Method Stack</li>
+                        <li><strong>Execution Engine:</strong> Interpreter, JIT Compiler, Garbage Collector</li>
+                    </ul>
+                    
+                    <h4>Heap vs Stack</h4>
+                    <table class="comparison-table">
+                        <tr>
+                            <th>Heap</th>
+                            <th>Stack</th>
+                        </tr>
+                        <tr>
+                            <td>Stores objects</td>
+                            <td>Stores local variables, method calls</td>
+                        </tr>
+                        <tr>
+                            <td>Shared among threads</td>
+                            <td>Thread-specific</td>
+                        </tr>
+                        <tr>
+                            <td>Garbage collected</td>
+                            <td>Automatically deallocated when method returns</td>
+                        </tr>
+                        <tr>
+                            <td>Slower access</td>
+                            <td>Faster access</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>Garbage Collection</h3>
+                    <p>GC automatically reclaims memory occupied by objects that are no longer reachable.</p>
+                    
+                    <h4>Heap Generations</h4>
+                    <ul>
+                        <li><strong>Young Generation (Eden + Survivor):</strong> New objects are created here. Minor GC occurs frequently.</li>
+                        <li><strong>Old/Tenured Generation:</strong> Long-lived objects. Major GC (Full GC) is less frequent but slower.</li>
+                    </ul>
+                    
+                    <div class="example-box">
+                        <h5>🌍 Real-World Example</h5>
+                        <p>Think of Young Gen as a nursery where new plants are placed. Those that survive are moved to the main garden (Old Gen). The gardener (GC) regularly cleans up dead plants from the nursery (Minor GC) and occasionally does a full cleanup of the entire garden (Full GC).</p>
+                    </div>
+                    
+                    <h4>GC Algorithms</h4>
+                    <ul>
+                        <li><strong>Serial GC:</strong> Single-threaded, stop-the-world</li>
+                        <li><strong>Parallel GC:</strong> Multi-threaded, good for throughput</li>
+                        <li><strong>G1 GC:</strong> Divides heap into regions, good balance of throughput and latency</li>
+                        <li><strong>ZGC:</strong> Very low pause times (sub-millisecond)</li>
+                    </ul>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>Reference Types</h3>
+                    <ul>
+                        <li><strong>Strong Reference:</strong> Normal reference. Object won't be GC'd as long as strong reference exists.</li>
+                        <li><strong>Weak Reference:</strong> GC'd at next collection if no strong references. Used in WeakHashMap.</li>
+                        <li><strong>Soft Reference:</strong> GC'd only when memory is low. Good for caches.</li>
+                        <li><strong>Phantom Reference:</strong> Used to schedule post-mortem cleanup actions.</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <!-- Topic 6: I/O & Networking -->
+            <section class="topic-section">
+                <h2>6. Input/Output (I/O) & Networking</h2>
+                
+                <div class="subtopic">
+                    <h3>Serialization</h3>
+                    <p>Serialization converts an object into a byte stream for storage or transmission. Deserialization reconstructs the object.</p>
+                    
+                    <div class="code-block">
+<pre>public class Employee implements Serializable {
+    private static final long serialVersionUID = 1L;  // Version control
+    private String name;
+    private transient String password;  // Won't be serialized
+}
+
+// Serialize
+try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("emp.ser"))) {
+    oos.writeObject(employee);
+}
+
+// Deserialize
+try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("emp.ser"))) {
+    Employee emp = (Employee) ois.readObject();
+}</pre>
+                    </div>
+                    
+                    <div class="key-point">
+                        <strong>serialVersionUID:</strong> A version number for the class. If you change the class structure, change this ID to prevent deserialization issues.
+                    </div>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>NIO (New I/O)</h3>
+                    <p>NIO provides non-blocking I/O operations using Channels and Buffers.</p>
+                    <ul>
+                        <li><strong>Channel:</strong> Bidirectional data highway (FileChannel, SocketChannel)</li>
+                        <li><strong>Buffer:</strong> Container for data (ByteBuffer, CharBuffer)</li>
+                        <li><strong>Selector:</strong> Monitors multiple channels for events (multiplexing)</li>
+                    </ul>
+                    
+                    <div class="example-box">
+                        <h5>🌍 Real-World Example: Server handling many connections</h5>
+                        <p>Like a receptionist who can watch multiple phone lines and handle whichever one rings, instead of having one person per phone line.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Topic 7: Design Patterns -->
+            <section class="topic-section">
+                <h2>7. Design Patterns</h2>
+                
+                <div class="subtopic">
+                    <h3>Creational Patterns</h3>
+                    
+                    <h4>Singleton Pattern</h4>
+                    <p>Ensures only one instance of a class exists throughout the application.</p>
+                    
+                    <div class="code-block">
+<pre>// Thread-safe Singleton with Double-Checked Locking
+public class DatabaseConnection {
+    private static volatile DatabaseConnection instance;
+    
+    private DatabaseConnection() {}
+    
+    public static DatabaseConnection getInstance() {
+        if (instance == null) {
+            synchronized (DatabaseConnection.class) {
+                if (instance == null) {
+                    instance = new DatabaseConnection();
+                }
+            }
+        }
+        return instance;
+    }
+}</pre>
+                    </div>
+                    
+                    <div class="example-box">
+                        <h5>🌍 Real-World Example: Database Connection Pool</h5>
+                        <p>Your application should have only one connection pool manager that all components use.</p>
+                    </div>
+                    
+                    <h4>Factory Pattern</h4>
+                    <p>Creates objects without exposing creation logic. Client uses a common interface.</p>
+                    
+                    <div class="example-box">
+                        <h5>🌍 Real-World Example: Document Creator</h5>
+                        <p>A document factory that creates PDF, Word, or Excel documents based on the type requested.</p>
+                    </div>
+                    
+                    <h4>Builder Pattern</h4>
+                    <p>Constructs complex objects step by step. Useful when an object has many optional parameters.</p>
+                    
+                    <div class="code-block">
+<pre>User user = User.builder()
+    .name("John")
+    .email("john@example.com")
+    .age(30)
+    .address("123 Main St")
+    .build();</pre>
+                    </div>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>Structural Patterns</h3>
+                    
+                    <h4>Adapter Pattern</h4>
+                    <p>Converts one interface to another that clients expect. Acts as a bridge between incompatible interfaces.</p>
+                    
+                    <div class="example-box">
+                        <h5>🌍 Real-World Example: Power Adapter</h5>
+                        <p>A travel power adapter lets you use your US laptop charger in European outlets.</p>
+                    </div>
+                    
+                    <h4>Decorator Pattern</h4>
+                    <p>Adds behavior to objects dynamically without modifying their code.</p>
+                    
+                    <div class="example-box">
+                        <h5>🌍 Real-World Example: Coffee Shop</h5>
+                        <p>Start with basic coffee, then add milk decorator, sugar decorator, whipped cream decorator - each adds cost and features.</p>
+                    </div>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>Behavioral Patterns</h3>
+                    
+                    <h4>Observer Pattern</h4>
+                    <p>Defines a subscription mechanism to notify multiple objects about events.</p>
+                    
+                    <div class="example-box">
+                        <h5>🌍 Real-World Example: Newsletter Subscription</h5>
+                        <p>Subscribers get notified when a new blog post is published. They don't need to keep checking - they're automatically notified.</p>
+                    </div>
+                    
+                    <h4>Strategy Pattern</h4>
+                    <p>Defines a family of algorithms and makes them interchangeable at runtime.</p>
+                    
+                    <div class="example-box">
+                        <h5>🌍 Real-World Example: Payment Processing</h5>
+                        <p>At checkout, customer chooses payment strategy: credit card, PayPal, or bank transfer. The checkout process remains the same, only the payment strategy changes.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Topic 8: Modern Java Features -->
+            <section class="topic-section">
+                <h2>8. Modern Java Features (Java 9 - 21)</h2>
+                
+                <div class="subtopic">
+                    <h3>Records (Java 16+)</h3>
+                    <p>Concise way to create immutable data carriers. Automatically generates constructor, getters, equals(), hashCode(), toString().</p>
+                    
+                    <div class="code-block">
+<pre>// Traditional way - lots of boilerplate
+public class Point {
+    private final int x;
+    private final int y;
+    public Point(int x, int y) { this.x = x; this.y = y; }
+    public int getX() { return x; }
+    // ... equals, hashCode, toString
+}
+
+// With Records - one line!
+public record Point(int x, int y) {}</pre>
+                    </div>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>Sealed Classes (Java 17)</h3>
+                    <p>Restricts which classes can extend or implement a class/interface.</p>
+                    
+                    <div class="code-block">
+<pre>public sealed class Shape permits Circle, Rectangle, Triangle {}
+
+public final class Circle extends Shape {}
+public final class Rectangle extends Shape {}
+public non-sealed class Triangle extends Shape {}  // Can be extended further</pre>
+                    </div>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>Virtual Threads (Java 21)</h3>
+                    <p>Lightweight threads managed by JVM, not OS. Can create millions of virtual threads for high-throughput concurrent applications.</p>
+                    
+                    <div class="code-block">
+<pre>// Create virtual threads easily
+Thread.startVirtualThread(() -> {
+    // Handle request
+});
+
+// Or with executor
+try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
+    executor.submit(() -> handleRequest());
+}</pre>
+                    </div>
+                    
+                    <div class="example-box">
+                        <h5>🌍 Real-World Example: Web Server</h5>
+                        <p>Handle 1 million concurrent HTTP requests without running out of threads. Each request gets its own virtual thread.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Topic 9: Testing -->
+            <section class="topic-section">
+                <h2>9. Testing & Quality</h2>
+                
+                <div class="subtopic">
+                    <h3>JUnit 5</h3>
+                    
+                    <div class="code-block">
+<pre>import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+class CalculatorTest {
+    
+    private Calculator calculator;
+    
+    @BeforeEach
+    void setUp() {
+        calculator = new Calculator();
+    }
+    
+    @Test
+    @DisplayName("Addition should return correct sum")
+    void testAddition() {
+        assertEquals(5, calculator.add(2, 3));
+    }
+    
+    @Test
+    void testDivisionByZero() {
+        assertThrows(ArithmeticException.class, 
+            () -> calculator.divide(10, 0));
+    }
+    
+    @AfterEach
+    void tearDown() {
+        calculator = null;
+    }
+}</pre>
+                    </div>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>Mockito</h3>
+                    <p>Mockito is used to create mock objects for unit testing, isolating the code under test.</p>
+                    
+                    <div class="code-block">
+<pre>@ExtendWith(MockitoExtension.class)
+class UserServiceTest {
+    
+    @Mock
+    private UserRepository userRepository;
+    
+    @InjectMocks
+    private UserService userService;
+    
+    @Test
+    void shouldReturnUser() {
+        // Arrange
+        User mockUser = new User("John");
+        when(userRepository.findById(1L)).thenReturn(Optional.of(mockUser));
+        
+        // Act
+        User result = userService.getUser(1L);
+        
+        // Assert
+        assertEquals("John", result.getName());
+        verify(userRepository, times(1)).findById(1L);
+    }
+}</pre>
+                    </div>
+                    
+                    <div class="example-box">
+                        <h5>🌍 Real-World Example</h5>
+                        <p>When testing a UserService, you don't want to hit a real database. Mock the UserRepository to return test data.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Topic 10: Database Connectivity -->
+            <section class="topic-section">
+                <h2>10. Database Connectivity</h2>
+                
+                <div class="subtopic">
+                    <h3>JDBC Basics</h3>
+                    
+                    <h4>Statement Types</h4>
+                    <ul>
+                        <li><strong>Statement:</strong> Simple SQL queries. Vulnerable to SQL injection.</li>
+                        <li><strong>PreparedStatement:</strong> Precompiled, parameterized queries. Safe from SQL injection.</li>
+                        <li><strong>CallableStatement:</strong> Calls stored procedures.</li>
+                    </ul>
+                    
+                    <div class="code-block">
+<pre>// PreparedStatement (Always use this!)
+String sql = "SELECT * FROM users WHERE email = ?";
+try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+    pstmt.setString(1, email);  // Parameter binding
+    ResultSet rs = pstmt.executeQuery();
+    while (rs.next()) {
+        String name = rs.getString("name");
+    }
+}</pre>
+                    </div>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>ACID Properties</h3>
+                    <ul>
+                        <li><strong>Atomicity:</strong> All operations in a transaction succeed or all fail</li>
+                        <li><strong>Consistency:</strong> Database moves from one valid state to another</li>
+                        <li><strong>Isolation:</strong> Concurrent transactions don't interfere with each other</li>
+                        <li><strong>Durability:</strong> Committed transactions persist even after system failure</li>
+                    </ul>
+                    
+                    <div class="example-box">
+                        <h5>🌍 Real-World Example: Bank Transfer</h5>
+                        <p>Transferring $100 from Account A to B: Debit A and Credit B must both succeed or both fail (Atomicity). The total money in the system remains the same (Consistency).</p>
+                    </div>
+                </div>
+                
+                <div class="subtopic">
+                    <h3>JPA/Hibernate Basics</h3>
+                    
+                    <h4>Entity Lifecycle</h4>
+                    <ul>
+                        <li><strong>Transient:</strong> Object created, not associated with persistence context</li>
+                        <li><strong>Managed:</strong> Object is tracked by persistence context</li>
+                        <li><strong>Detached:</strong> Was managed but persistence context is closed</li>
+                        <li><strong>Removed:</strong> Scheduled for deletion</li>
+                    </ul>
+                    
+                    <h4>Fetch Types</h4>
+                    <ul>
+                        <li><strong>LAZY:</strong> Load related entities only when accessed (default for collections)</li>
+                        <li><strong>EAGER:</strong> Load related entities immediately with parent</li>
+                    </ul>
+                    
+                    <div class="key-point">
+                        <strong>N+1 Problem:</strong> When fetching N entities, if each entity lazily loads a collection, you get N+1 queries. Solution: Use JOIN FETCH or @EntityGraph.
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <footer>
+            <p>Java Essential Topics - Comprehensive Guide | Created for Learning & Interview Preparation</p>
+        </footer>
+    </div>
+</body>
+</html>

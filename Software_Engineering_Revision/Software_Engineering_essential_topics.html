@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Engineering Essential Topics</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%);
+            padding: 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        header {
+            background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        header p { font-size: 1.1em; opacity: 0.9; }
+        .content {
+            padding: 40px;
+        }
+        .topic-section {
+            margin-bottom: 40px;
+            border-left: 5px solid #ff6b6b;
+            padding-left: 20px;
+        }
+        .topic-section h2 {
+            color: #ff6b6b;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+        .subtopic {
+            margin-bottom: 25px;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .subtopic h3 {
+            color: #4ecdc4;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        .explanation {
+            margin: 10px 0;
+            font-size: 0.95em;
+        }
+        .example {
+            background: #e8f4f8;
+            border-left: 4px solid #2196F3;
+            padding: 12px;
+            margin-top: 10px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+        .example strong {
+            color: #2196F3;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        .highlight {
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+        footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏢 Software Engineering Essential Topics</h1>
+            <p>For 3-4 Years Experience Engineers</p>
+        </header>
+
+        <div class="content">
+            <!-- Topic 1: System Design -->
+            <div class="topic-section">
+                <h2>1. System Design (HLD & LLD)</h2>
+
+                <div class="subtopic">
+                    <h3>📈 Scalability & Load Balancing</h3>
+                    <div class="explanation"><span class="highlight">Horizontal Scaling</span> (add servers), <span class="highlight">Vertical Scaling</span> (upgrade one server). Load balancing distributes traffic: <span class="highlight">Round Robin</span> (equal), <span class="highlight">Least Connection</span> (busy-aware).</div>
+                    <div class="example"><strong>Real Example:</strong> Netflix handles millions of users: horizontal scaling (1000s servers) + load balancers route traffic across data centers.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>💾 Caching Strategies</h3>
+                    <div class="explanation"><span class="highlight">Write-Through</span> (write to cache & DB), <span class="highlight">Write-Back</span> (write to cache, async to DB), <span class="highlight">Cache-Aside</span> (app manages cache). Redis/Memcached common.</div>
+                    <div class="example"><strong>Real Example:</strong> User profile: cache in Redis (100ms vs 1s DB), expire after 1 hour.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🗄️ Database Sharding & Partitioning</h3>
+                    <div class="explanation">Split data across multiple databases by criterion (user_id range, geography). Increases capacity, complexity of queries increases.</div>
+                    <div class="example"><strong>Real Example:</strong> 100M users split across 10 shards: shard 0 has users 0-10M, fast lookups.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>⚖️ CAP Theorem</h3>
+                    <div class="explanation">Consistency (all nodes same data), Availability (always responsive), Partition tolerance (network failures). Pick 2 of 3. Strong vs Eventual Consistency.</div>
+                    <div class="example"><strong>Real Example:</strong> Bank (Consistency > Availability), Social media (Availability > Consistency).</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🏗️ Microservices vs Monolithic</h3>
+                    <div class="explanation">Monolith: single codebase, shared DB (simple, tight coupling). Microservices: independent services, own DB (scalable, complex deployment).</div>
+                    <div class="example"><strong>Real Example:</strong> Amazon: user-service, order-service, payment-service deployed independently.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>📡 Communication Patterns</h3>
+                    <div class="explanation">REST (HTTP, simple), gRPC (fast, binary), GraphQL (query language), WebSockets (real-time). Choose based on use case.</div>
+                    <div class="example"><strong>Real Example:</strong> API → REST, Mobile app → gRPC, Real-time chat → WebSockets.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>📨 Message Queues</h3>
+                    <div class="explanation">Kafka (high throughput, distributed), RabbitMQ (reliable, routing). Decouple producer-consumer, handle spikes.</div>
+                    <div class="example"><strong>Real Example:</strong> User signup → send welcome email: don't block, queue event, email service processes async.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🚦 Rate Limiting & Throttling</h3>
+                    <div class="explanation">Prevent abuse: allow 100 requests/min per user. Token bucket algorithm common. Returns 429 Too Many Requests.</div>
+                    <div class="example"><strong>Real Example:</strong> API: 1000 requests/day free tier, 10000 for paid. Prevents bot attacks.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🆔 Distributed ID Generation</h3>
+                    <div class="explanation">Snowflake algorithm (Twitter): timestamp + machine ID + sequence, generates 64-bit unique IDs. UUID alternative (collision rare but 128-bit).</div>
+                    <div class="example"><strong>Real Example:</strong> Generate unique order IDs across 100 servers without central DB.</div>
+                </div>
+            </div>
+
+            <!-- Topic 2: Clean Code & Architecture -->
+            <div class="topic-section">
+                <h2>2. Clean Code, Architecture & Design Patterns</h2>
+
+                <div class="subtopic">
+                    <h3>🎯 SOLID Principles</h3>
+                    <div class="explanation"><span class="highlight">S</span> (Single Responsibility), <span class="highlight">O</span> (Open-Closed), <span class="highlight">L</span> (Liskov Substitution), <span class="highlight">I</span> (Interface Segregation), <span class="highlight">D</span> (Dependency Inversion). Best practices for maintainable code.</div>
+                    <div class="example"><strong>Real Example:</strong> User class shouldn't handle both user logic AND database queries (violates SRP).</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🎨 Design Patterns</h3>
+                    <div class="explanation">Singleton, Factory, Builder, Observer, Strategy, etc. Proven solutions to common problems. Know creational (Factory, Builder), structural (Adapter, Decorator), behavioral (Observer, Strategy).</div>
+                    <div class="example"><strong>Real Example:</strong> Payment processing: Strategy pattern for different payment methods (PayPal, Stripe, etc).</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🌐 Domain-Driven Design (DDD)</h3>
+                    <div class="explanation">Focus on business logic. Entities (with ID), Value Objects (no ID), Aggregates (root entity), Repositories (data access).</div>
+                    <div class="example"><strong>Real Example:</strong> Order aggregate contains OrderLineItems, focus on order business logic not DB schema.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🏛️ Hexagonal Architecture</h3>
+                    <div class="explanation">Business logic at center, external concerns (DB, API) at periphery. Dependency inversion: core depends on adapters.</div>
+                    <div class="example"><strong>Real Example:</strong> Core business logic doesn't know if using PostgreSQL or MongoDB, adapter abstracts it.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>💉 Dependency Injection & IoC</h3>
+                    <div class="explanation">Inject dependencies rather than creating inside. Container manages lifecycles. Improves testability (mock dependencies).</div>
+                    <div class="example"><strong>Real Example:</strong> Service depends on UserRepository: pass as constructor argument, not create inside.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🚀 Test-Driven Development (TDD)</h3>
+                    <div class="explanation">Write test first, then implementation. Red (test fails) → Green (test passes) → Refactor. Higher code quality.</div>
+                    <div class="example"><strong>Real Example:</strong> Test login behavior before writing UserService logic.</div>
+                </div>
+            </div>
+
+            <!-- Topic 3: Databases -->
+            <div class="topic-section">
+                <h2>3. Databases</h2>
+
+                <div class="subtopic">
+                    <h3>🔒 ACID Properties & Isolation Levels</h3>
+                    <div class="explanation"><span class="highlight">Atomicity</span> (all or nothing), <span class="highlight">Consistency</span> (valid state), <span class="highlight">Isolation</span> (concurrent independence), <span class="highlight">Durability</span> (persistent). Isolation levels: Read Uncommitted → Serializable.</div>
+                    <div class="example"><strong>Real Example:</strong> Transfer money: either both debit+credit happen (atomicity) or nothing.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>📑 Indexing</h3>
+                    <div class="explanation">B-Tree (most common), Hash (equality), Composite (multiple columns). Speeds up SELECT, slows INSERT/UPDATE. Trade-off.</div>
+                    <div class="example"><strong>Real Example:</strong> Query users by email: index on email → O(log n) vs O(n) full scan.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🗄️ SQL vs NoSQL</h3>
+                    <div class="explanation">SQL (structured, joins, ACID), NoSQL (flexible schema, horizontal scaling). PostgreSQL (relational), MongoDB (document), Cassandra (wide column).</div>
+                    <div class="example"><strong>Real Example:</strong> User profiles with varied fields → MongoDB flexible schema vs PostgreSQL rigid.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🔀 Normalization vs Denormalization</h3>
+                    <div class="explanation">Normalization (no data duplication, 3NF), increases joins. Denormalization (store computed/duplicate data), faster queries, harder updates.</div>
+                    <div class="example"><strong>Real Example:</strong> Cache user_count in profile: denormalization, update on follow/unfollow.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🔄 Replication Strategies</h3>
+                    <div class="explanation">Master-Slave (master writes, slaves read), Multi-Master (multiple writes). Improves availability & read throughput.</div>
+                    <div class="example"><strong>Real Example:</strong> Primary DB in US, replica in Europe for local reads.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>⚙️ Concurrency Control</h3>
+                    <div class="explanation">Pessimistic (lock before change), Optimistic (check version before update). Pessimistic safe but slower, optimistic fast but conflicts.</div>
+                    <div class="example"><strong>Real Example:</strong> Edit conflict: two users editing same post, use version number to detect.</div>
+                </div>
+            </div>
+
+            <!-- Topic 4: DSA Refresher -->
+            <div class="topic-section">
+                <h2>4. Data Structures & Algorithms</h2>
+
+                <div class="subtopic">
+                    <h3>📊 Fundamental Structures</h3>
+                    <div class="explanation">Array (O(1) access), LinkedList (O(n) access), Stack (LIFO), Queue (FIFO), Hash Table (O(1) avg). Choose based on operations needed.</div>
+                    <div class="example"><strong>Real Example:</strong> Undo button → Stack, Queue of jobs, Employee lookup by ID → Hash Table.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🌳 Trees & Graphs</h3>
+                    <div class="explanation">BST (sorted, O(log n) search), AVL/Red-Black (balanced), Graph (BFS/DFS traversal). Essential for many problems.</div>
+                    <div class="example"><strong>Real Example:</strong> Autocomplete → Trie, Route finding → BFS on graph.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>⚡ Relevant Algorithms</h3>
+                    <div class="explanation">Sorting (Merge, Quick, Heap), Binary Search (log n), Dynamic Programming (optimal substructure), Greedy (local optimal).</div>
+                    <div class="example"><strong>Real Example:</strong> Find median of stream → heap, Longest substring → sliding window, Coin change → DP.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>📈 Big O Notation</h3>
+                    <div class="explanation">Time complexity: O(1), O(log n), O(n), O(n log n), O(n²). Space complexity similar. Always know worst case.</div>
+                    <div class="example"><strong>Real Example:</strong> Processing 1M items: O(n) = 1s, O(n²) = 11 days. Choose wisely!</div>
+                </div>
+            </div>
+
+            <!-- Topic 5: Distributed Systems -->
+            <div class="topic-section">
+                <h2>5. Distributed Systems Concepts</h2>
+
+                <div class="subtopic">
+                    <h3>🤝 Consensus Algorithms</h3>
+                    <div class="explanation">Paxos, Raft: ensure agreement across nodes despite failures. Critical for distributed databases, leader election.</div>
+                    <div class="example"><strong>Real Example:</strong> 5 replicas decide leader: 3 must agree (quorum), fault-tolerant.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>👑 Leader Election</h3>
+                    <div class="explanation">One node coordinates cluster (leader). If fails, new election. Complex in distributed environment.</div>
+                    <div class="example"><strong>Real Example:</strong> Database master fails, automatic election chooses new master to prevent split-brain.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>⏱️ Clock Synchronization</h3>
+                    <div class="explanation">NTP (Network Time Protocol) synchronizes clocks. Logical clocks (Vector Clocks) order events causally.</div>
+                    <div class="example"><strong>Real Example:</strong> Distributed tracing: order logs from multiple servers using logical clocks.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🛡️ Circuit Breaker Pattern</h3>
+                    <div class="explanation">Prevent cascading failures. States: Closed (working), Open (failing, reject), Half-Open (test). Essential for resilience.</div>
+                    <div class="example"><strong>Real Example:</strong> Service A calls Service B: B fails → circuit opens → A fails fast rather than hanging.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🔄 Idempotency</h3>
+                    <div class="explanation">API call produces same result if retried. Critical for distributed systems (network failures cause retries).</div>
+                    <div class="example"><strong>Real Example:</strong> Payment API: idempotency key prevents duplicate charges on retry.</div>
+                </div>
+            </div>
+
+            <!-- Topic 6: Networking & Security -->
+            <div class="topic-section">
+                <h2>6. Networking & Security</h2>
+
+                <div class="subtopic">
+                    <h3>🌐 HTTP Versions</h3>
+                    <div class="explanation">HTTP/1.1: sequential requests. HTTP/2: multiplexing (multiple requests in parallel). HTTP/3: QUIC protocol, faster.</div>
+                    <div class="example"><strong>Real Example:</strong> Load 100 resources: HTTP/1.1 = slow, HTTP/2 = parallel = fast.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🤝 TCP/IP Handshake</h3>
+                    <div class="explanation">SYN → SYN-ACK → ACK establishes connection. Slow Start gradually increases window size to avoid congestion.</div>
+                    <div class="example"><strong>Real Example:</strong> High latency connections: multiple round trips, slow start ramps up gradually.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🔍 DNS Resolution</h3>
+                    <div class="explanation">Domain name → IP address lookup. Recursive query: client → resolver → root → TLD → authoritative. Cache at each step.</div>
+                    <div class="example"><strong>Real Example:</strong> User types google.com: browser queries local cache, ISP resolver, root nameserver, etc.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🔐 Authentication & Authorization</h3>
+                    <div class="explanation">OAuth 2.0 (third-party), OIDC (authentication), JWT (tokens), SAML (enterprise). Choose based on use case.</div>
+                    <div class="example"><strong>Real Example:</strong> Login with Google: OAuth 2.0, your app gets token, validates with Google.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🔒 HTTPS/TLS Handshake</h3>
+                    <div class="explanation">Public key exchange, session key negotiation, encrypted communication. Always use HTTPS in production.</div>
+                    <div class="example"><strong>Real Example:</strong> Browser verifies server certificate, establishes secure connection before sending credentials.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>⚠️ OWASP Top 10 Vulnerabilities</h3>
+                    <div class="explanation">SQL Injection (parameterized queries), XSS (sanitize output), CSRF (tokens), authentication flaws, sensitive data exposure, etc.</div>
+                    <div class="example"><strong>Real Example:</strong> SQL Injection: "' OR '1'='1" bypasses login, use PreparedStatement instead.</div>
+                </div>
+            </div>
+
+            <!-- Topic 7: DevOps & Cloud -->
+            <div class="topic-section">
+                <h2>7. DevOps & Cloud Awareness</h2>
+
+                <div class="subtopic">
+                    <h3>🔄 CI/CD Pipelines</h3>
+                    <div class="explanation">Continuous Integration (code merged, tested), Continuous Deployment (auto-deploy if tests pass). Jenkins, GitHub Actions, GitLab CI.</div>
+                    <div class="example"><strong>Real Example:</strong> Push code → GitHub → CI tests → if pass, deploy to staging & production.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🐳 Docker Containerization</h3>
+                    <div class="explanation"><code>Dockerfile</code> builds image, containers run instances. Lightweight vs VMs. Reproducible environments.</div>
+                    <div class="example"><strong>Real Example:</strong> App works on dev but fails on prod: Docker ensures identical environment.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>⚙️ Kubernetes Basics</h3>
+                    <div class="explanation">Pod (container group), Service (network exposure), Deployment (replicas). Orchestrates containerized apps, auto-scaling.</div>
+                    <div class="example"><strong>Real Example:</strong> 100K users: Kubernetes scales to 10 replicas, distributes traffic, handles failures.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>☁️ Cloud Fundamentals (AWS/Azure/GCP)</h3>
+                    <div class="explanation">Compute (EC2, App Engine), Storage (S3, Cloud Storage), Networking (VPC), Serverless (Lambda). Pay-as-you-go model.</div>
+                    <div class="example"><strong>Real Example:</strong> Upload video → S3, Lambda processes → thumbnail cached → CDN serves globally.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>📝 Infrastructure as Code (IaC)</h3>
+                    <div class="explanation">Terraform, Cloudformation define infrastructure in code. Version control, reproducible, test before deploy.</div>
+                    <div class="example"><strong>Real Example:</strong> Production setup in code: database, servers, networks reproducible across environments.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>👁️ Observability</h3>
+                    <div class="explanation">Logging (ELK stack), Metrics (Prometheus), Tracing (Jaeger). Monitor system health, debug issues.</div>
+                    <div class="example"><strong>Real Example:</strong> Request slow: trace shows 1s in database query, 2s in external API call.</div>
+                </div>
+            </div>
+
+            <!-- Topic 8: Soft Skills -->
+            <div class="topic-section">
+                <h2>8. Soft Skills & Behavioral</h2>
+
+                <div class="subtopic">
+                    <h3>💬 System Design Interview Approach</h3>
+                    <div class="explanation">Clarify requirements → Propose high-level design → Deep dive into components → Discuss tradeoffs. Be clear, ask questions.</div>
+                    <div class="example"><strong>Real Example:</strong> Design Twitter: clarify DAU, TPS, read-write ratio before diving into sharding strategy.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>👥 Mentorship & Code Reviews</h3>
+                    <div class="explanation">Give constructive feedback, ask questions, don't criticize. Receive feedback gracefully, learn from others.</div>
+                    <div class="example"><strong>Real Example:</strong> Review: "Good logic, but could be clearer with a helper method" vs "This is wrong".</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>📋 Agile Methodologies</h3>
+                    <div class="explanation">Scrum (sprints, standups), Kanban (continuous flow). Adaptive planning, regular feedback, iterate.</div>
+                    <div class="example"><strong>Real Example:</strong> 2-week sprint: plan → daily standup → demoes → retrospective for improvements.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>📢 Stakeholder Communication</h3>
+                    <div class="explanation">Tailor message to audience (technical vs business), clear timelines, manage expectations. Essential for career growth.</div>
+                    <div class="example"><strong>Real Example:</strong> To CEO: "Shipping in 2 weeks". To engineer: "Need to refactor DB schema, estimated 100 hours".</div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Software Engineering Essential Topics Guide • For 3-4 Years Experience</p>
+            <p>Last Updated: 2026</p>
+        </footer>
+    </div>
+</body>
+</html>

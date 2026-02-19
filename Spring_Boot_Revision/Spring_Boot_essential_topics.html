@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spring Boot Essential Topics</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #6cab39 0%, #2e7d32 100%);
+            padding: 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        header {
+            background: linear-gradient(135deg, #6cab39 0%, #2e7d32 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        header p { font-size: 1.1em; opacity: 0.9; }
+        .content {
+            padding: 40px;
+        }
+        .topic-section {
+            margin-bottom: 40px;
+            border-left: 5px solid #6cab39;
+            padding-left: 20px;
+        }
+        .topic-section h2 {
+            color: #6cab39;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+        .subtopic {
+            margin-bottom: 25px;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .subtopic h3 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        .explanation {
+            margin: 10px 0;
+            font-size: 0.95em;
+        }
+        .example {
+            background: #e8f4f8;
+            border-left: 4px solid #2196F3;
+            padding: 12px;
+            margin-top: 10px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+        .example strong {
+            color: #2196F3;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        .highlight {
+            color: #6cab39;
+            font-weight: bold;
+        }
+        footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🍃 Spring Boot Essential Topics</h1>
+            <p>Complete Guide with Real-World Examples</p>
+        </header>
+
+        <div class="content">
+            <!-- Topic 1: Core Spring Boot Fundamentals -->
+            <div class="topic-section">
+                <h2>1. Core Spring Boot Fundamentals</h2>
+
+                <div class="subtopic">
+                    <h3>⚙️ Auto-Configuration</h3>
+                    <div class="explanation"><code>@EnableAutoConfiguration</code> scans classpath, auto-configures beans based on present libraries. Classpath scanning using <code>spring.factories</code> file. Override with <code>@Bean</code>.</div>
+                    <div class="example"><strong>Real Example:</strong> Add <code>spring-boot-starter-data-jpa</code> → Hibernate auto-configured, no manual config needed.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>📦 Starters</h3>
+                    <div class="explanation">Simplified dependency management. <code>spring-boot-starter-web</code> includes tomcat, spring-mvc, etc. Version managed by Spring Boot.</div>
+                    <div class="example"><strong>Real Example:</strong> Instead of adding 20 dependencies manually, use starter: dependencies align perfectly.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>💉 Dependency Injection & Bean Scopes</h3>
+                    <div class="explanation">Constructor injection (best), Setter injection, Field injection (discouraged - hard to test). Scopes: Singleton (default), Prototype (new each time), Request, Session.</div>
+                    <div class="example"><strong>Real Example:</strong> <code>public UserService(UserRepository repo) { this.repo = repo; }</code> constructor injection, easy to test with mock.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🔄 Bean Lifecycle</h3>
+                    <div class="explanation"><code>@PostConstruct</code> runs after bean creation (init logic), <code>@PreDestroy</code> before bean destroyed (cleanup). Useful for resource management.</div>
+                    <div class="example"><strong>Real Example:</strong> Database connection pool: <code>@PostConstruct</code> initializes connections, <code>@PreDestroy</code> closes pool.</div>
+                </div>
+            </div>
+
+            <!-- Topic 2: Essential Annotations -->
+            <div class="topic-section">
+                <h2>2. Essential Annotations</h2>
+
+                <div class="subtopic">
+                    <h3>🷷 Stereotype Annotations</h3>
+                    <div class="explanation"><code>@Component</code> (generic), <code>@Service</code> (business logic), <code>@Repository</code> (data access), <code>@Controller</code> (MVC), <code>@RestController</code> (REST API).</div>
+                    <div class="example"><strong>Real Example:</strong> UserService class: <code>@Service</code> annotation, Spring auto-registers as bean.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>⚙️ Configuration Annotations</h3>
+                    <div class="explanation"><code>@Configuration</code> marks class as bean factory, <code>@Bean</code> defines bean, <code>@Import</code> includes other config classes.</div>
+                    <div class="example"><strong>Real Example:</strong> Create DatabaseConfig class with <code>@Bean DataSource</code> method, returns configured datasource.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>💉 Injection Annotations</h3>
+                    <div class="explanation"><code>@Autowired</code> injects dependency (by type), <code>@Qualifier</code> specifies which bean if multiple, <code>@Primary</code> default when ambiguous.</div>
+                    <div class="example"><strong>Real Example:</strong> Two UserRepository implementations: mark one as <code>@Primary</code> or use <code>@Qualifier("mysql")</code>.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>📝 Property Annotations</h3>
+                    <div class="explanation"><code>@Value</code> injects properties (environment variables, config files), <code>@ConfigurationProperties</code> binds class to properties prefix with validation.</div>
+                    <div class="example"><strong>Real Example:</strong> <code>@Value("${app.name}")</code> injects value from application.properties.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🚀 @SpringBootApplication</h3>
+                    <div class="explanation">Combines <code>@Configuration</code>, <code>@EnableAutoConfiguration</code>, <code>@ComponentScan</code>. Single annotation for startup.</div>
+                    <div class="example"><strong>Real Example:</strong> Main class: <code>@SpringBootApplication public class App { public static void main(String[] args) { SpringApplication.run(App.class); }}</code></div>
+                </div>
+            </div>
+
+            <!-- Topic 3: Building RESTful APIs -->
+            <div class="topic-section">
+                <h2>3. Building RESTful APIs</h2>
+
+                <div class="subtopic">
+                    <h3>🎯 Request Mapping</h3>
+                    <div class="explanation"><code>@GetMapping, @PostMapping, @PutMapping, @DeleteMapping, @PatchMapping</code> map HTTP methods to handlers.</div>
+                    <div class="example"><strong>Real Example:</strong> <code>@GetMapping("/users/{id}") public User getUser(@PathVariable int id) { ... }</code></div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>📥 Input Annotations</h3>
+                    <div class="explanation"><code>@PathVariable</code> from URL path, <code>@RequestParam</code> from query string, <code>@RequestBody</code> from JSON, <code>@RequestHeader</code> from headers.</div>
+                    <div class="example"><strong>Real Example:</strong> <code>@PostMapping("/users") void createUser(@RequestBody User user, @RequestHeader String authorization) { ... }</code></div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>📤 Response Entity</h3>
+                    <div class="explanation"><code>ResponseEntity&lt;T&gt;</code> wraps response with HTTP status, headers. Better than returning plain objects.</div>
+                    <div class="example"><strong>Real Example:</strong> <code>return new ResponseEntity<>(user, HttpStatus.OK);</code> or <code>ResponseEntity.created(uri).body(user);</code> for 201 status.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>⚠️ Exception Handling</h3>
+                    <div class="explanation"><code>@ControllerAdvice</code> global exception handler, <code>@ExceptionHandler</code> maps exception to response. Centralized, consistent error responses.</div>
+                    <div class="example"><strong>Real Example:</strong> <code>@ExceptionHandler(UserNotFoundException.class) public ResponseEntity<Error> handle(UserNotFoundException e) { ... return new ResponseEntity<>(error, NOT_FOUND); }</code></div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>✅ Validation</h3>
+                    <div class="explanation"><code>@Valid</code> triggers validation, use Jakarta Validation annotations: <code>@NotNull, @Size, @Email, @Positive</code>, etc.</div>
+                    <div class="example"><strong>Real Example:</strong> <code>@PostMapping void createUser(@Valid @RequestBody User user) { ... }</code> validates email format, non-null fields.</div>
+                </div>
+            </div>
+
+            <!-- Topic 4: Spring Data JPA -->
+            <div class="topic-section">
+                <h2>4. Spring Data JPA & Database Access</h2>
+
+                <div class="subtopic">
+                    <h3>📦 Repository Types</h3>
+                    <div class="explanation"><code>CrudRepository</code> (CRUD operations), <code>PagingAndSortingRepository</code> (+ pagination), <code>JpaRepository</code> (+ batch operations - most used).</div>
+                    <div class="example"><strong>Real Example:</strong> <code>public interface UserRepository extends JpaRepository&lt;User, Long&gt; { ... }</code> auto-generates save(), findById(), delete().</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🔍 Query Methods</h3>
+                    <div class="explanation">Derived queries from method names: <code>findByEmail, findByAgeGreaterThan, findByNameContains</code>. Or use <code>@Query</code> for JPQL/native SQL.</div>
+                    <div class="example"><strong>Real Example:</strong> <code>List&lt;User&gt; findByEmailContainsAndIsActive(String email, boolean active)</code> auto-generates WHERE clause.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>📋 Entity Mapping</h3>
+                    <div class="explanation"><code>@Entity</code> marks class as entity, <code>@Table</code> specifies table name, <code>@Id</code> primary key, <code>@GeneratedValue</code> auto-increment, <code>@Column</code> customizes column.</div>
+                    <div class="example"><strong>Real Example:</strong> <code>@Entity @Table(name="users") class User { @Id @GeneratedValue Long id; @Column(unique=true) String email; }</code></div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🔗 Relationships - Lazy vs Eager</h3>
+                    <div class="explanation"><span class="highlight">Lazy</span> loads related data on-demand (efficient), <span class="highlight">Eager</span> loads immediately (wasteful). <code>@OneToMany(fetch=FetchType.LAZY)</code> default, <code>.EAGER</code> loads all.</div>
+                    <div class="example"><strong>Real Example:</strong> User with 1000 Orders: lazy loading → select user → select orders only if accessed. Eager → load all orders even if not used.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>💾 Transactions</h3>
+                    <div class="explanation"><code>@Transactional</code> manages transactions. Propagation: REQUIRED (default, reuse or create), REQUIRES_NEW (new transaction). Isolation levels: READ_COMMITTED (default), SERIALIZABLE (strict).</div>
+                    <div class="example"><strong>Real Example:</strong> Transfer money: <code>@Transactional</code> ensures both debit + credit happen or neither.</div>
+                </div>
+            </div>
+
+            <!-- Topic 5: Spring Security -->
+            <div class="topic-section">
+                <h2>5. Spring Security</h2>
+
+                <div class="subtopic">
+                    <h3>🔐 SecurityFilterChain</h3>
+                    <div class="explanation">Filters intercept requests, check authentication/authorization. Order matters: Authentication → Authorization. Chain configured in <code>@EnableWebSecurity</code>.</div>
+                    <div class="example"><strong>Real Example:</strong> Request → AuthenticationFilter (checks credentials) → AuthorizationFilter (checks permissions) → Controller.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>👤 Authentication</h3>
+                    <div class="explanation"><code>AuthenticationManager</code> orchestrates auth, <code>UserDetailsService</code> loads user from DB, <code>UsernamePasswordAuthenticationToken</code> holds credentials.</div>
+                    <div class="example"><strong>Real Example:</strong> Login: AuthenticationManager calls UserDetailsService → checks password → creates authenticated token → stores in SecurityContext.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🔑 Authorization</h3>
+                    <div class="explanation">Role-based access control (RBAC). <code>@PreAuthorize("hasRole('ADMIN')")</code> restricts to admins. <code>requestMatchers</code> configure URL permissions.</div>
+                    <div class="example"><strong>Real Example:</strong> Admin endpoints: <code>http.authorizeHttpRequests().requestMatchers("/admin/**").hasRole("ADMIN")</code></div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🎫 JWT (JSON Web Tokens)</h3>
+                    <div class="explanation">Stateless authentication. Token contains user info (base64 encoded). Server verifies signature. Mobile apps use JWT (no session cookies).</div>
+                    <div class="example"><strong>Real Example:</strong> Mobile app: login → receive JWT → send in Authorization header for API calls.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🌐 CORS Configuration</h3>
+                    <div class="explanation">Allow cross-origin requests. <code>@CrossOrigin</code> annotation or global config. Frontend on different domain needs CORS.</div>
+                    <div class="example"><strong>Real Example:</strong> Web app (localhost:3000) calls API (localhost:8080): configure CORS to allow.</div>
+                </div>
+            </div>
+
+            <!-- Topic 6: Testing -->
+            <div class="topic-section">
+                <h2>6. Testing</h2>
+
+                <div class="subtopic">
+                    <h3>🧪 Test Annotations</h3>
+                    <div class="explanation"><code>@SpringBootTest</code> loads full context (slow, integration test), <code>@WebMvcTest</code> tests only controllers (fast), <code>@DataJpaTest</code> tests repositories.</div>
+                    <div class="example"><strong>Real Example:</strong> Unit test UserService: <code>@WebMvcTest(UserController.class)</code> with MockMvc without loading entire app.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🎭 Mocking with Mockito</h3>
+                    <div class="explanation"><code>@Mock</code> creates mock, <code>@InjectMocks</code> injects mocks into test class. <code>when-thenReturn</code> define behavior. <code>verify</code> assert calls.</div>
+                    <div class="example"><strong>Real Example:</strong> Test UserService without database: <code>@Mock UserRepository repo; @InjectMocks UserService service; when(repo.findById(1)).thenReturn(Optional.of(user));</code></div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🧬 Integration Testing</h3>
+                    <div class="explanation">Test multiple components together. <code>@SpringBootTest</code> loads entire app, test against real DB (use testcontainers) or H2 in-memory.</div>
+                    <div class="example"><strong>Real Example:</strong> Test user creation → save to DB → verify email sent (mock) → check DB contains user.</div>
+                </div>
+            </div>
+
+            <!-- Topic 7: Microservices & Cloud -->
+            <div class="topic-section">
+                <h2>7. Microservices & Cloud Patterns</h2>
+
+                <div class="subtopic">
+                    <h3>🔍 Service Discovery</h3>
+                    <div class="explanation">Services register themselves (Eureka, Consul). Client calls service by name, discovery resolves to IP:port. Handles dynamic instance changes.</div>
+                    <div class="example"><strong>Real Example:</strong> OrderService calls UserService by name, discovery provides IP of available instance.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🚪 API Gateway</h3>
+                    <div class="explanation">Single entry point for all services. Routes requests, handles auth, rate limiting. Spring Cloud Gateway is Spring's solution.</div>
+                    <div class="example"><strong>Real Example:</strong> Client calls gateway/users → routes to UserService, /orders → OrderService.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🛡️ Circuit Breaker (Resilience4j)</h3>
+                    <div class="explanation">Prevent cascading failures. States: Closed (ok) → Open (failing) → Half-Open (testing). Fails fast, retries automatically.</div>
+                    <div class="example"><strong>Real Example:</strong> UserService calls PaymentService: fails 5 times → circuit opens → reject requests for 30s → half-open → test single request.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>⚙️ Externalized Config</h3>
+                    <div class="explanation">Spring Cloud Config: centralized server manages config for all services. Change config without redeploying.</div>
+                    <div class="example"><strong>Real Example:</strong> Update database URL in config server → all services pick up without restart.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>💬 Inter-Service Communication</h3>
+                    <div class="explanation"><code>RestTemplate</code> (deprecated), <code>WebClient</code> (non-blocking), <code>FeignClient</code> (declarative, like Retrofit). Choose non-blocking for high-concurrency.</div>
+                    <div class="example"><strong>Real Example:</strong> <code>@FeignClient("user-service") interface UserClient { @GetMapping("/users/{id}") User getUser(@PathVariable Long id); }</code></div>
+                </div>
+            </div>
+
+            <!-- Topic 8: Observability & Monitoring -->
+            <div class="topic-section">
+                <h2>8. Observability & Monitoring</h2>
+
+                <div class="subtopic">
+                    <h3>📊 Actuator Endpoints</h3>
+                    <div class="explanation">Expose application metrics & info. <code>/actuator/health</code> (liveness/readiness), <code>/actuator/metrics</code>, <code>/actuator/info</code> (app info).</div>
+                    <div class="example"><strong>Real Example:</strong> Kubernetes calls <code>/health</code> to check if pod is alive, restart if unhealthy.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>📈 Micrometer</h3>
+                    <div class="explanation">Collects metrics (JVM, HTTP, custom). Exports to Prometheus, Grafana, etc. <code>@Timed</code> for method metrics.</div>
+                    <div class="example"><strong>Real Example:</strong> <code>@Timed public void processOrder() { ... }</code> auto-measures execution time, count, errors.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>📝 Logging</h3>
+                    <div class="explanation">SLF4J facade, Logback implementation. MDC (Mapped Diagnostic Context) for tracing. Log levels: TRACE, DEBUG, INFO, WARN, ERROR.</div>
+                    <div class="example"><strong>Real Example:</strong> MDC.put("requestId", uuid) → all logs in request include requestId, easy tracing across services.</div>
+                </div>
+            </div>
+
+            <!-- Topic 9: Scheduling & Async -->
+            <div class="topic-section">
+                <h2>9. Scheduling & Async</h2>
+
+                <div class="subtopic">
+                    <h3>⏰ Scheduled Tasks</h3>
+                    <div class="explanation"><code>@EnableScheduling</code> enables scheduling, <code>@Scheduled</code> with cron or fixed delay. Runs on single thread by default.</div>
+                    <div class="example"><strong>Real Example:</strong> <code>@Scheduled(cron="0 0 * * * *") void dailyCleanup() { ... }</code> runs daily at midnight.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>⚡ Async Processing</h3>
+                    <div class="explanation"><code>@EnableAsync</code> enables async, <code>@Async</code> on method runs in separate thread pool. Returns <code>CompletableFuture</code> or <code>void</code>.</div>
+                    <div class="example"><strong>Real Example:</strong> Send welcome email async: <code>@Async void sendWelcomeEmail(User user) { ... }</code> doesn't block response.</div>
+                </div>
+            </div>
+
+            <!-- Topic 10: Profiles & Deployment -->
+            <div class="topic-section">
+                <h2>10. Profiles & Deployment</h2>
+
+                <div class="subtopic">
+                    <h3>🔧 Profiles</h3>
+                    <div class="explanation">Separate config per environment: dev, test, prod. <code>spring.profiles.active=prod</code> activates profile. Loads <code>application-prod.properties</code>.</div>
+                    <div class="example"><strong>Real Example:</strong> Dev uses H2 DB, Prod uses PostgreSQL. Config differs by profile.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>📦 Packaging</h3>
+                    <div class="explanation">JAR packaged with embedded Tomcat (standalone), WAR deployed to external app server (legacy). JAR recommended for modern apps.</div>
+                    <div class="example"><strong>Real Example:</strong> JAR: <code>java -jar app.jar</code> runs standalone. WAR: deploy to Tomcat server.</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🐳 Docker Containerization</h3>
+                    <div class="explanation"><code>Dockerfile</code> multistage build: compile in first stage, copy fat JAR to final image. Minimize image size.</div>
+                    <div class="example"><strong>Real Example:</strong> <code>Dockerfile</code> uses JDK for build, JRE for runtime, reduces size from 500MB to 200MB.</div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Spring Boot Essential Topics Guide • Created for Interview & Learning Preparation</p>
+            <p>Last Updated: 2026</p>
+        </footer>
+    </div>
+</body>
+</html>
